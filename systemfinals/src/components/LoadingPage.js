@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './loadingpagestyle.css';
 
-import videobg from '../imgs/videobg.mp4';
+// import videobg from '../imgs/videobg.mp4';
 import logo from '../imgs/websitelogo.png';
 import center from '../imgs/lpbanner.png';
 
@@ -19,10 +19,10 @@ const LoadingPage = () => {
 
   return (
     <div className="loading-page">
-      <video autoPlay muted loop className="background-video">
+      {/* <video autoPlay muted loop className="background-video">
         <source src={videobg} type="video/mp4" />
         Your browser does not support the video tag.
-      </video>
+      </video> */}
 
       <img src={logo} alt="Logo" className="logo" />
 
