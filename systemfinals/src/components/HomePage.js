@@ -97,11 +97,16 @@ const HomePage = () => {
         <button className="viewall">View All</button>        
       </section>
 
-      <section>
-          
+      <section className="feedbacksection">
+      <div className="feedback-container">
+        <textarea
+          value={""} onChange={""} nplaceholder="Your message here..." rows="13" className="feedback-textarea"
+        ></textarea>
         <p>Your input helps us improve and provide better service. Share your thoughts, suggestions, or concerns, and let us know how we can serve you better!</p>
-        <button className="submitmsg">Submit</button>        
-      </section>
+        <button className="submitmsg">Submit</button>
+      </div>
+    </section>
+
 
       <ScrollToTopButton />
     </div>

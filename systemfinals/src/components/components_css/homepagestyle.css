@@ -44,7 +44,7 @@
     background-color: #f6d130;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
     font-size: 1.1rem;
     transition: background-color 0.3s ease, transform 0.3s ease; 
@@ -70,12 +70,12 @@
     animation: fadeIn 2s ease-in-out;
 }
 
-/* -------------------- FEATURES ----------------------------------*/
+/* -------------------- FEATURES -------------------- */
 .fullfeature {
     display: flex; 
     justify-content: center; 
     align-items: center; 
-    margin: 50px;
+    margin: 70px;
   }
 
 .features {
@@ -109,6 +109,7 @@
 
 .text-content h3 {
     margin: 0;
+    font-weight: 500;
 }
 
 .text-content p {
@@ -127,9 +128,12 @@
   }
 
   
-/* -------------------- PRODUCT CARD ----------------------------------*/
+/* -------------------- PRODUCT CARD -------------------- */
 .ftrdproducts {
-    margin: 60px;
+    margin: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .ftrdproducts h1{
@@ -217,8 +221,87 @@
     color: #f6d130;
 }
 
+.viewall {
+    background-color: #34408e; 
+    color: white; 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 10px; 
+    font-size: 16px; 
+    cursor: pointer; 
+    margin-top: 40px; 
+    text-align: center;
+    display: inline-block; 
+}
 
-/* Custom scrollbar for Webkit-based browsers (Chrome, Safari) */
+.viewall:hover {
+    background-color: #2a326e;
+}
+
+/* ---------------------- FEEDBACK SECTION ---------------------- */
+.feedbacksection {
+    background-image: url('../../imgs/fbbg.png');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-start; 
+    align-items: flex-end; 
+    padding: 20px; 
+    color: white;
+    text-align: left;
+    position: relative;
+    object-fit: cover;
+    z-index: -1; 
+}
+
+.feedback-container {
+  display: flex;
+  flex-direction: column; 
+  align-items: flex-start; 
+  width: 100%;
+  max-width: 600px;
+  margin-left: 100px;
+}
+
+.feedback-textarea {
+  width: 730px; 
+  padding: 15px; 
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+  margin-bottom: 20px; 
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+.feedbacksection p {
+  color: #34408e;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 20px; 
+  text-align: left; 
+  width: 700px;
+}
+
+.submitmsg {
+  background-color: #f4c035; 
+  color: #34408e; 
+  padding: 12px 30px; 
+  border: none; 
+  border-radius: 8px; 
+  font-size: 16px; 
+  font-weight: bold; 
+  cursor: pointer; 
+  transition: transform 0.3s ease, background-color 0.3s;
+}
+
+.submitmsg:hover {
+  background-color: #e3ac2d;
+  transform: scale(1.05); 
+}
+
+
+/* ---------------------- CUSTOM SCROLL BAR ---------------------- */
 ::-webkit-scrollbar {
     width: 12px; 
 }
