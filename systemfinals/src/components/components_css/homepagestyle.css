@@ -70,6 +70,63 @@
     animation: fadeIn 2s ease-in-out;
 }
 
+/* -------------------- FEATURES ----------------------------------*/
+.fullfeature {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    margin: 50px;
+  }
+
+.features {
+    display: flex; 
+    justify-content: space-between; 
+    flex-wrap: wrap;
+}
+
+.feature {
+    flex: 1; 
+    min-width: 300px;
+    margin-right: 100px;
+    margin-left: 100px; 
+}
+
+.feature-content {
+    display: flex; 
+    align-items: center; 
+}
+
+.feature-icon {
+    height: 50px;
+    width: auto; 
+    margin-right: 10px; 
+}
+
+.text-content {
+    text-align: left; 
+    width: 300px;
+}
+
+.text-content h3 {
+    margin: 0;
+}
+
+.text-content p {
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .features {
+      flex-direction: column; 
+    }
+  
+    .feature {
+      min-width: 100%;
+      margin-bottom: 80px; 
+    }
+  }
+
+  
 /* -------------------- PRODUCT CARD ----------------------------------*/
 .ftrdproducts {
     margin: 60px;

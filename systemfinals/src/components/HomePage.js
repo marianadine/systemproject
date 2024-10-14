@@ -35,6 +35,39 @@ const HomePage = () => {
         </p>
       </div>
 
+      <section className='fullfeature'>
+        <div className='features'>
+          <div className="feature">
+            <div className="feature-content">
+              <img src="path/to/your/image.jpg" alt="Product" className="feature-icon" />
+              <div className="text-content">
+                <h3>Scheduled Pickup Orders</h3>
+                <p>Keeps the pickup process organized, preventing overcrowding and long waits.</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="feature">
+            <div className="feature-content">
+              <img src="path/to/your/image.jpg" alt="Product" className="feature-icon" />
+              <div className="text-content">
+                <h3>Exclusive for NU MOA Students</h3>
+                <p>Exclusively for NU MOA students, who can access the services for orders.</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="feature">
+            <div className="feature-content">
+              <img src="path/to/your/image.jpg" alt="Product" className="feature-icon" />
+              <div className="text-content">
+                <h3>Feedback Management</h3>
+                <p>Allows students to provide feedback on their experiences or suggestions.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className='ftrdproducts'>
         <h1>Featured Products</h1>
@@ -61,11 +94,13 @@ const HomePage = () => {
                 <i className="fas fa-cart-plus icon"></i>
             </div>
         </div>
-
+        <button className="viewall">View All</button>        
       </section>
 
       <section>
-                
+          
+        <p>Your input helps us improve and provide better service. Share your thoughts, suggestions, or concerns, and let us know how we can serve you better!</p>
+        <button className="submitmsg">Submit</button>        
       </section>
 
       <ScrollToTopButton />
