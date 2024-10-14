@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import './homepagestyle.css'; 
+import './components_css/homepagestyle.css';
 
 import NavBar from './NavBar';
 import ScrollToTopButton from './ScrollToTopButton';

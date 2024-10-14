@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './loadingpagestyle.css';
+import './components_css/loadingpagestyle.css';
 
 // import videobg from '../imgs/videobg.mp4';
 import logo from '../imgs/websitelogo.png';
