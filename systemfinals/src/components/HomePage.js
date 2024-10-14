@@ -5,6 +5,10 @@ import './components_css/homepagestyle.css';
 import NavBar from './NavBar';
 import ScrollToTopButton from './ScrollToTopButton';
 
+import f1 from "../imgs/f1.png";
+import f2 from "../imgs/f2.png";
+import f3 from "../imgs/f3.png";
+
 const HomePage = () => {
   const [selectedSize, setSelectedSize] = useState('');
 
@@ -39,7 +43,7 @@ const HomePage = () => {
         <div className='features'>
           <div className="feature">
             <div className="feature-content">
-              <img src="path/to/your/image.jpg" alt="Product" className="feature-icon" />
+              <img src={f1} alt="Product" className="feature-icon" />
               <div className="text-content">
                 <h3>Scheduled Pickup Orders</h3>
                 <p>Keeps the pickup process organized, preventing overcrowding and long waits.</p>
@@ -49,7 +53,7 @@ const HomePage = () => {
 
           <div className="feature">
             <div className="feature-content">
-              <img src="path/to/your/image.jpg" alt="Product" className="feature-icon" />
+              <img src={f2} alt="Product" className="feature-icon" />
               <div className="text-content">
                 <h3>Exclusive for NU MOA Students</h3>
                 <p>Exclusively for NU MOA students, who can access the services for orders.</p>
@@ -59,7 +63,7 @@ const HomePage = () => {
 
           <div className="feature">
             <div className="feature-content">
-              <img src="path/to/your/image.jpg" alt="Product" className="feature-icon" />
+              <img src={f3} alt="Product" className="feature-icon" />
               <div className="text-content">
                 <h3>Feedback Management</h3>
                 <p>Allows students to provide feedback on their experiences or suggestions.</p>
