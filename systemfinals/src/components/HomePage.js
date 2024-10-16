@@ -8,6 +8,7 @@ import ScrollToTopButton from './ScrollToTopButton';
 import f1 from "../imgs/f1.png";
 import f2 from "../imgs/f2.png";
 import f3 from "../imgs/f3.png";
+import FeedbackPage from './FeedbackPage';
 
 const HomePage = () => {
   const [selectedSize, setSelectedSize] = useState('');
@@ -105,6 +106,10 @@ const HomePage = () => {
         <h1>hello</h1>
       </section>
 
+      <section className='feedbacksection'>
+        <FeedbackPage />
+      </section>
+      
       <ScrollToTopButton />
     </div>
   )
