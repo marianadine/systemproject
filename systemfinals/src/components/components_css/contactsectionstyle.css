@@ -1,0 +1,114 @@
+#contactsection {
+    background-color: #2a326e; /* picture to dapat */
+    text-align: center;
+    padding: 60px 0;
+    color: white;
+}
+
+#contactsection img {
+    max-width: 250px;
+}
+
+#contactsection h1 {
+    font-size: 38px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+#contactsection p {
+    font-size: 18px;
+    color: white;
+    margin-bottom: 40px;
+}
+
+.contactbox {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: white;
+    color: black;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    max-width: 1500px;
+    margin: 0 auto;
+    text-align: left; 
+}
+
+.content1 {
+    flex: 2.0;
+    padding: 0 30px;
+}
+
+.content2, .content3 {
+    flex: 1;
+    padding: 0 20px;
+}
+
+.content1 h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.contactbox .content1 p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: black !important;
+}
+
+.content2 h2, .content3 h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.content2 ul {
+    padding-left: 0;
+}
+
+.content2 li, .content2 a {
+    list-style: none;
+    text-decoration: none;
+    font-size: 16px;
+    color: black;
+}
+
+.content2 li {
+    margin-bottom: 8px;
+}
+
+.content3 a {
+    display: block;
+    font-size: 16px;
+    color: black;
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+
+.content3 a i {
+    margin-right: 8px;
+    color: #4267B2; 
+}
+
+@media screen and (max-width: 768px) {
+    .contactbox {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .content1, .content2, .content3 {
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .content1 img {
+        margin-bottom: 20px;
+    }
+
+    .content1, .content2, .content3 {
+        padding: 10px;
+    }
+}
