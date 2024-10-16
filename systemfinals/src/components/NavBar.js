@@ -12,19 +12,21 @@ const NavBar = () => {
       </div>
       <ul className="navbar-links">
         <li>
-            <a href="/">Home</a>
+            <a href="/home">Home</a>
         </li>
         <li>
             <a href="/products">Products</a>
         </li>
         <li>
-            <a href="/account">Accounts</a>
-        </li>
-        <li>
             <a href="/contact">Contact</a>
         </li>
         <li>
+            <a href="/account">Account</a>
+        </li>
+        <li>
+          <a href="/cart">
             <i className="fas fa-shopping-cart"></i>
+          </a>
         </li>
       </ul>
       <div className="navbar-menu">
