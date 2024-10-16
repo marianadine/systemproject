@@ -6,7 +6,7 @@ import ScrollToTopButton from './ScrollToTopButton';
 import FeedbackPage from './FeedbackPage';
 
 import NavBar from './NavBar';
-import logocontact from '../imgs/websitelogo.png';
+import defpfp from '../imgs/defaultpfp.jpg';
 import ContactSection from './ContactSection';
 
 const AccountPage = () => {
@@ -30,7 +30,7 @@ const AccountPage = () => {
                 <div className="account-info">
                     <h3>My Account</h3>
                     <div className="account-details">
-                        <img src={logocontact} alt="Profile Picture" className="profile-pic" />
+                        <img src={defpfp} alt="Profile Picture" className="profile-pic" />
                         <div className="info">
                             <h4>Maria Nadine Faye Rufo</h4>
                             <p>BS Information Technology</p>
@@ -40,7 +40,6 @@ const AccountPage = () => {
                             onClick={handleEditClick}
                             style={{
                                 backgroundColor: isEditing ? '#f6d130' : '',
-                                color: isEditing ? '#000' : '#fff',
                             }}
                         >
                             {isEditing ? 'Save' : 'Edit'}
@@ -49,13 +48,14 @@ const AccountPage = () => {
                     
                     <h3>Personal Information</h3>
                     <div className="personal-info">
-                        <div className="info-item">
-                            <strong>First Name</strong>
-                            <p>Maria Nadine Faye</p>
-                        </div>
+
                         <div className="info-item">
                             <strong>Last Name</strong>
                             <p>Rufo</p>
+                        </div>
+                        <div className="info-item">
+                            <strong>First Name</strong>
+                            <p>Maria Nadine Faye</p>
                         </div>
                         <div className="info-item">
                             <strong>Course</strong>
