@@ -101,6 +101,10 @@ const HomePage = () => {
         <button className="viewall">View All</button>        
       </section>
 
+      <section id='contactsection'>
+        <h1>hello</h1>
+      </section>
+
       <ScrollToTopButton />
     </div>
   )
