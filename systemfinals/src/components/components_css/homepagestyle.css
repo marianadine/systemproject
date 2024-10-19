@@ -109,22 +109,26 @@
 .text-content h3 {
     margin: 0;
     font-weight: 500;
+    width: 100%;
+    min-width: 400px;
 }
 
 .text-content p {
     margin: 0;
+    max-width: 300px;
 }
+
 
 @media (max-width: 768px) {
     .features {
-      flex-direction: column; 
+        flex-direction: column; 
     }
-  
+
     .feature {
-      min-width: 100%;
-      margin-bottom: 80px; 
+        min-width: 100%;
+        margin-bottom: 80px; 
     }
-  }
+}
 
   /* -------------------- WHAT'S NEW -------------------- */
   @keyframes fadeIn {
@@ -143,9 +147,9 @@
     align-items: flex-start;
     justify-content: space-between;
     padding: 50px;
-    background-color: #f9f9f9;
+    background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     margin: 100px;
     margin-bottom: 20px;
     opacity: 0;
@@ -259,10 +263,9 @@
 
 .product-card {
     width: 300px; 
-    border: 1px solid #ddd;
     border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
     background-color: #fff;
 }
@@ -351,6 +354,42 @@
 
 .viewall:hover {
     background-color: #2a326e;
+}
+
+/* -------------------- NU MOA YT VIDEO -------------------- */
+.videonumoa {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    margin: 40px;
+}
+
+.video-content-container {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    align-items: flex-start;
+}
+
+.video-content-container iframe {
+    flex-shrink: 0;
+    max-width: 100%;
+    border-radius: 15px;
+}
+
+.videodescription {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    max-width: 900px;
+}
+
+.videodescription p {
+    color: black;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: justify;
 }
 
 

@@ -117,28 +117,17 @@ const HomePage = () => {
       </section>
 
       <section className={`whatsnew ${isVisible ? 'visible' : ''}`} ref={whatsNewRef}>
-        <div>
-          <h1>What's new?</h1>
-          <h3>NU Tumbler</h3>
-          <p>Stay refreshed on the go with our sleek and stylish NU Tumbler! Made from durable, high-quality materials, this eco-friendly tumbler keeps your drinks hot or cold for hours. Show off your NU pride while enjoying your favorite beverages in style!</p>
-          <div className="color-options">
-            {['Blue', 'Yellow'].map((color) => (
-              <button
-                key={color}
-                className={`color-button ${selectedColor === color ? 'active' : ''}`}
-                onClick={() => handleColorClick(color)}
-              >
-                {color}
-              </button>
-            ))}
-          </div>
-          <div className="price-container">
-            <p>PHP 199</p>
-            <i className="fas fa-cart-plus icon"></i>
-          </div>
+      <div>
+        <h1>What's new?</h1>
+        <h3>NU Tumbler</h3>
+        <p>Stay refreshed on the go with our sleek and stylish NU Tumbler! Made from durable, high-quality materials, this eco-friendly tumbler keeps your drinks hot or cold for hours. Show off your NU pride while enjoying your favorite beverages in style!</p>
+        <p>Available in color: Blue and Yellow</p>
+        <div className="price-container">
+          <p>PHP 199</p>
         </div>
-        <img src={tumbler} alt="NU Tumbler" />
-      </section>
+      </div>
+      <img src={tumbler} alt="NU Tumbler" />
+    </section>
 
       <section className="ftrdproducts">
         <h1>Featured Products</h1>
@@ -172,6 +161,29 @@ const HomePage = () => {
 
         <button onClick={viewallproducts} className="viewall">View All</button>
       </section>
+
+      <section className='videonumoa'>
+      <div className="video-content-container">
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/tq0LMc3aIqY?si=TJB2O46iQNCqE2Iz"
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+        ></iframe>
+
+        <div className='videodescription'>
+          <p>Come and take a peek at NU MOA.</p>
+          <p>Are you looking for a campus in Pasay City, near Manila, Paranaque, and Las Pinas, that offers courses like Dentistry, Optometry, Psychology, Information Technology, and Senior High School?</p>
+          <p>NU MOA’s state-of-the-art facilities are a testament to NU’s promise to provide quality, affordable, and accessible education.</p>
+        </div>
+      </div>
+    </section>
+
+
 
       <ContactSection />
       <FeedbackPage />
