@@ -4,8 +4,13 @@ import './components_css/feedbackform.css';
 const FeedbackPage = () => {
   const [isFeedbackVisible, setIsFeedbackVisible] = useState(false);
   const [feedback, setFeedback] = useState('');
+  const [rating, setRating] = useState(0);
+  const [hoverRating, setHoverRating] = useState(0);
   const [thankYouMessageVisible, setThankYouMessageVisible] = useState(false);
   const feedbackRef = useRef(null);
+
+  const minCharacterCount = 5;
+  const maxCharacterCount = 100;
 
   const toggleFeedbackForm = () => {
     setIsFeedbackVisible(!isFeedbackVisible);
@@ -13,9 +18,19 @@ const FeedbackPage = () => {
 
   const handleSubmitFeedback = (e) => {
     e.preventDefault();
-    // Process the feedback, e.g., send to a server or store it locally
+
+    const trimmedFeedbackLength = feedback.replace(/\s+/g, '').length;
+
+    if (trimmedFeedbackLength < minCharacterCount || trimmedFeedbackLength > maxCharacterCount) {
+      alert(`Feedback must be between ${minCharacterCount} and ${maxCharacterCount} characters (excluding spaces).`);
+      return;
+    }
+
+    console.log(`Feedback: ${feedback}, Rating: ${rating}`);
+    
     setIsFeedbackVisible(false); 
     setFeedback(''); 
+    setRating(0); 
     setThankYouMessageVisible(true);
 
     setTimeout(() => {
@@ -37,6 +52,19 @@ const FeedbackPage = () => {
     };
   }, [feedbackRef]);
 
+  const handleStarClick = (ratingValue) => {
+    setRating(ratingValue);
+  };
+
+  const handleStarHover = (ratingValue) => {
+    setHoverRating(ratingValue);
+  };
+
+  const handleStarHoverLeave = () => {
+    setHoverRating(0);
+  };
+  const currentCharacterCount = feedback.replace(/\s+/g, '').length;
+
   return (
     <div>
       <button className="feedback-icon-btn" onClick={toggleFeedbackForm}>
@@ -54,11 +82,32 @@ const FeedbackPage = () => {
               <textarea
                 value={feedback}
                 onChange={(e) => setFeedback(e.target.value)}
-                placeholder="Write your feedback here..."
+                placeholder="Write your feedback here... (5-100 characters)"
                 className="feedback-textarea"
                 required
               />
-              <button type="submit" className="submit-feedback-btn">
+              <div className={`character-counter ${currentCharacterCount > maxCharacterCount ? 'exceeds-limit' : ''}`}>
+                {currentCharacterCount}/{maxCharacterCount}
+              </div>
+              <div className="star-rating">
+                {[...Array(5)].map((star, index) => {
+                  const ratingValue = index + 1;
+                  return (
+                    <i
+                      key={index}
+                      className={`fas fa-star ${ratingValue <= (hoverRating || rating) ? 'star-filled' : ''}`}
+                      onClick={() => handleStarClick(ratingValue)}
+                      onMouseEnter={() => handleStarHover(ratingValue)}
+                      onMouseLeave={handleStarHoverLeave}
+                    ></i>
+                  );
+                })}
+              </div>
+              <button 
+                type="submit" 
+                className="submit-feedback-btn" 
+                disabled={currentCharacterCount < minCharacterCount || currentCharacterCount > maxCharacterCount}
+              >
                 Submit
               </button>
             </form>

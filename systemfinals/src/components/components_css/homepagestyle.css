@@ -11,7 +11,6 @@
     text-align: left;
     position: relative;
     object-fit: cover;
-    z-index: -1; 
 }
 
 .top-content {
@@ -55,8 +54,8 @@
     transform: scale(1.05);
 }
 
+/* -------------------- NOTICE -------------------- */
 .notice-section {
-    margin-top: -54px;
     width: auto;
     background-color: #34408e;
     padding: 15px 20px;
@@ -127,6 +126,115 @@
     }
   }
 
+  /* -------------------- WHAT'S NEW -------------------- */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .whatsnew {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 50px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 100px;
+    margin-bottom: 20px;
+    opacity: 0;
+    transition: opacity 0.5s; 
+  }
+  
+  .whatsnew.visible {
+    opacity: 1;
+    animation: fadeIn 4.5s forwards;
+  }
+  
+
+.whatsnew h1 {
+    font-size: 100px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #34408e;
+}
+
+.whatsnew h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #2c2c2c;
+    font-weight: 600;
+}
+
+.whatsnew p {
+    font-size: 20px !important;
+    font-weight: 500 !important;
+    color: #555;
+    line-height: 1.5;
+    max-width: 900px;
+}
+
+.color-options {
+    margin: 20px 0;
+}
+
+.color-button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f6d130;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.color-button:hover {
+    background-color: #d2b226;
+}
+
+.color-button.active {
+    background-color: #34408e;
+}
+
+.price-container {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.price-container p {
+    font-weight: 700 !important;
+    font-size: 25px !important;
+}
+
+.whatsnew p:last-of-type {
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.icon {
+    font-size: 24px;
+    color: #34408e;
+}
+
+.whatsnew img {
+    width: 400px;
+    height: auto;
+}
+
+.whatsnew > div {
+    padding: 50px;
+    margin-right: 120;
+}
   
 /* -------------------- PRODUCT CARD -------------------- */
 .ftrdproducts {
@@ -137,13 +245,20 @@
 }
 
 .ftrdproducts h1{
-    font-weight: bold;
+    font-weight: 600;
     font-size: 35px;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
+}
+
+.product-list {
+    display: flex;
+    justify-content: center; 
+    flex-wrap: wrap;
+    gap: 50px; 
 }
 
 .product-card {
-    width: 300px;
+    width: 300px; 
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 20px;
@@ -229,7 +344,7 @@
     border-radius: 10px; 
     font-size: 16px; 
     cursor: pointer; 
-    margin-top: 40px; 
+    margin-top: 60px; 
     text-align: center;
     display: inline-block; 
 }
@@ -237,6 +352,7 @@
 .viewall:hover {
     background-color: #2a326e;
 }
+
 
 /* ---------------------- CONTACT SECTION ---------------------- */
 #contactsection {
