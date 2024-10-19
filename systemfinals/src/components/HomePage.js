@@ -12,7 +12,6 @@ import tumbler from "../imgs/tumbler.png";
 import ContactSection from './ContactSection';
 
 const HomePage = () => {
-  const [selectedColor, setSelectedColor] = useState('');
   const [products, setProducts] = useState([
     { id: 1, name: 'Product 1', price: 450, image: 'path/to/your/image1.jpg', selectedSize: '' },
     { id: 2, name: 'Product 2', price: 500, image: 'path/to/your/image2.jpg', selectedSize: '' },
@@ -21,11 +20,6 @@ const HomePage = () => {
   ]);
   const [isVisible, setIsVisible] = useState(false);
   const whatsNewRef = useRef(null); 
-
-  const handleColorClick = (color) => {
-    setSelectedColor(color);
-  };
-
   const navigate = useNavigate();
   const viewallproducts = () => {
     navigate('/products'); 
@@ -129,38 +123,38 @@ const HomePage = () => {
       <img src={tumbler} alt="NU Tumbler" />
     </section>
 
-      <section className="ftrdproducts">
-        <h1>Featured Products</h1>
+    <section className="ftrdproducts">
+      <h1>Featured Products</h1>
 
-        <div className="product-list">
-          {products.map((product) => (
-            <div className="product-card" key={product.id}>
-              <div className="product-image">
-                <img src={product.image} alt={product.name} />
-              </div>
-              <h2 className="product-name">{product.name}</h2>
-              <div className="size-options">
-                {['S', 'M', 'L', 'XL'].map((size) => (
-                  <button
-                    key={size}
-                    className={`size-button ${product.selectedSize === size ? 'active' : ''}`}
-                    onClick={() => handleSizeClick(product.id, size)}
-                  >
-                    {size}
-                  </button>
-                ))}
-              </div>
-              <p className="product-description">Short description of the product.</p>
-              <div className="price-container">
-                <span className="price">PHP {product.price}</span>
-                <i className="fas fa-cart-plus icon"></i>
-              </div>
+      <div className="product-list">
+        {products.map((product) => (
+          <div className="product-card" key={product.id}>
+            <div className="product-image">
+              <img src={product.image} alt={product.name} />
             </div>
-          ))}
-        </div>
+            <h2 className="product-name">{product.name}</h2>
+            <div className="size-options">
+              {['S', 'M', 'L', 'XL'].map((size) => (
+                <button
+                  key={size}
+                  className={`size-button ${product.selectedSize === size ? 'active' : ''}`}
+                  onClick={() => handleSizeClick(product.id, size)}
+                >
+                  {size}
+                </button>
+              ))}
+            </div>
+            <p className="product-description">Short description of the product.</p>
+            <div className="price-container">
+              <span className="price">PHP {product.price}</span>
+              <i className="fas fa-cart-plus icon"></i>
+            </div>
+          </div>
+        ))}
+      </div>
 
-        <button onClick={viewallproducts} className="viewall">View All</button>
-      </section>
+      <button onClick={viewallproducts} className="viewall">View All</button>
+    </section>
 
       <section className='videonumoa'>
       <div className="video-content-container">
