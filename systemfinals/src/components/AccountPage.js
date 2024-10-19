@@ -12,12 +12,33 @@ import ContactSection from './ContactSection';
 const AccountPage = () => {
     const navigate = useNavigate();
     const [isEditing, setIsEditing] = useState(false);
+    const [profilePic, setProfilePic] = useState(defpfp); 
+    const [selectedFile, setSelectedFile] = useState(null);
+
     const toLogout = () => {
         navigate('/login'); 
     };
 
     const handleEditClick = () => {
         setIsEditing(!isEditing);
+    };
+
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setProfilePic(reader.result); 
+            };
+            reader.readAsDataURL(file);
+            setSelectedFile(file);
+        }
+    };
+
+    const handleSave = () => {
+        // DITO LALAGAY YUNG PAG ISSAVE NA SA DB YUNG SELECTED FILE
+        handleEditClick();
+        setSelectedFile(null);
     };
 
     return (
@@ -30,14 +51,14 @@ const AccountPage = () => {
                 <div className="account-info">
                     <h3>My Account</h3>
                     <div className="account-details">
-                        <img src={defpfp} alt="Profile Picture" className="profile-pic" />
+                        <img src={profilePic} alt="Profile Picture" className="profile-pic" />
                         <div className="info">
                             <h4>Maria Nadine Faye Rufo</h4>
                             <p>BS Information Technology</p>
                         </div>
                         <button
                             className="edit-button"
-                            onClick={handleEditClick}
+                            onClick={isEditing ? handleSave : handleEditClick}
                             style={{
                                 backgroundColor: isEditing ? '#f6d130' : '',
                             }}
@@ -46,9 +67,23 @@ const AccountPage = () => {
                         </button>
                     </div>
                     
+                    {isEditing && (
+                        <div className="file-input-group">
+                            <label className="file-input-label">Choose a new profile picture:</label>
+                            <input 
+                                type="file" 
+                                accept="image/*" 
+                                onChange={handleFileChange} 
+                                className="file-input" 
+                            />
+                            {selectedFile && (
+                                <p style={{ marginTop: '10px' }}>Selected File: {selectedFile.name}</p>
+                            )}
+                        </div>
+                    )}
+
                     <h3>Personal Information</h3>
                     <div className="personal-info">
-
                         <div className="info-item">
                             <strong>Last Name</strong>
                             <p>Rufo</p>
@@ -70,13 +105,13 @@ const AccountPage = () => {
                             <p>ilovemikmik123</p>
                         </div>
                     </div>
+
                     <button className="logout" onClick={toLogout}>Logout</button>
                     </div>
                     </div>
               </section>
 
-
-            <ContactSection/>
+            <ContactSection />
             <FeedbackPage />
             <ScrollToTopButton />
 

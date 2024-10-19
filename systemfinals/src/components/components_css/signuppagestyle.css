@@ -1,3 +1,14 @@
+.bgsec {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+    background-image: url('../../imgs/lgsubg.png');
+    height: 100vh; 
+    font-family: Arial, sans-serif; 
+}
+
 .signup-container {
     width: 100%;
     max-width: 400px;
@@ -53,12 +64,14 @@ p {
 
 .email-input-group,
 .password-input-group,
+.confirmpassword-input-group,
 .course-input-group {
     position: relative;
     margin-bottom: 20px; 
 }
 
 .email-input-group i,
+.confirmpassword-input-group i,
 .password-input-group i {
     position: absolute;
     top: 50%;
@@ -69,6 +82,7 @@ p {
 
 .email-input-group input,
 .password-input-group input,
+.confirmpassword-input-group input,
 .course-input-group select {
     width: 100%; 
     padding: 10px 40px; 
@@ -85,11 +99,13 @@ p {
 
 .email-input-group input:focus,
 .password-input-group input:focus,
+.confirmpassword-input-group input:focus,
 .course-input-group select:focus {
     border-color: #333;
 }
 
-.password-input-group i:last-child {
+.password-input-group i:last-child,
+.confirmpassword-input-group i:last-child {
     position: absolute;
     right: -350px; 
     top: 50%;
