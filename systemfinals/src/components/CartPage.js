@@ -9,13 +9,13 @@ const CartPage = () => {
     <div>
       <NavBar />
       <div className='carttop'>
-        <h1>Cart Summary</h1>  
+        <h1>Cart Summary d rin final</h1>  
         <p>We take extra care to ensure your products are safely packaged and securely shipped, so they arrive fresh and in perfect condition every time!</p>
       </div>
 
       <div className='main'>
         <div className='productsadded'> 
-          
+        
         </div>
 
         <div className='ordersummary'>

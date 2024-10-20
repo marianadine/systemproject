@@ -5,6 +5,7 @@ import NavBar from './NavBar';
 import ContactSection from './ContactSection';
 import ScrollToTopButton from './ScrollToTopButton';
 import FeedbackPage from './FeedbackPage';
+import SizePopUpChart from './SizePopUpChart';
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([
@@ -31,10 +32,13 @@ const ProductsPage = () => {
   ]);
   
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [searchQuery, setSearchQuery] = useState(''); 
 
-  const filteredProducts = selectedCategory === 'all' 
-    ? products 
-    : products.filter(product => product.category === selectedCategory);
+  const filteredProducts = products.filter(product => {
+    const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory;
+    const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
 
   const handleSizeClick = (id, size) => {
     setProducts((prevProducts) =>
@@ -44,49 +48,67 @@ const ProductsPage = () => {
     );
   };
 
+  const [isSizeChartOpen, setIsSizeChartOpen] = useState(false);
+
+  const handleOpenSizeChart = () => {
+    setIsSizeChartOpen(true);
+  };
+
+  const handleCloseSizeChart = () => {
+    setIsSizeChartOpen(false);
+  };
+
   return (
     <div>
-        <NavBar />
+      <NavBar />
+      
+      <section className='introduction'>
+        <h1>Wear your pride, embrace the blue!</h1>
+        <p>Happy shopping! Enjoy exploring our collection and finding the perfect gear to showcase your Bulldog spirit!</p>
+        <button className="size-chart-button" onClick={handleOpenSizeChart}>View Size Chart</button>
+      </section>
+
+      {isSizeChartOpen && <SizePopUpChart onClose={handleCloseSizeChart} />}
+
+      <section className="product-container">
+        <h1 className="product-header">Products</h1>
         
-        <section className='introduction'>
-          <h1>Wear your pride, embrace the blue! papalitan q pa bg d mabasa</h1>
-          <p>Happy shopping! Enjoy exploring our collection and finding the perfect gear to showcase your Bulldog spirit!</p>
-          <button className="size-chart-button">View Size Chart</button>
-        </section>
+        <div className="category-filter">
+          <div className="search-bar-container">
+              <input 
+                  type="text" 
+                  placeholder="Search products..." 
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)} 
+                  className="search-bar"
+              />
+              <i className="fas fa-search search-icon"></i>
+          </div>
+          
+          <button 
+            className={selectedCategory === 'all' ? 'selected' : ''} 
+            onClick={() => setSelectedCategory('all')}
+          >All</button>
 
-        <section className='sizetable'>
+          <button 
+            className={selectedCategory === 'college' ? 'selected' : ''} 
+            onClick={() => setSelectedCategory('college')}
+          >College</button>
 
+          <button 
+            className={selectedCategory === 'senior high school' ? 'selected' : ''} 
+            onClick={() => setSelectedCategory('senior high school')}
+          >Senior High School</button>
 
-        </section>
-
-
-        <section className="product-container">
-          <h1 className="product-header">Products</h1>
-          <div className="category-filter">
-            <button 
-                className={selectedCategory === 'all' ? 'selected' : ''} 
-                onClick={() => setSelectedCategory('all')}
-            >All</button>
-
-            <button 
-                className={selectedCategory === 'college' ? 'selected' : ''} 
-                onClick={() => setSelectedCategory('college')}
-            >College</button>
-
-            <button 
-                className={selectedCategory === 'senior high school' ? 'selected' : ''} 
-                onClick={() => setSelectedCategory('senior high school')}
-            >Senior High School</button>
-
-            <button 
-                className={selectedCategory === 'merchandise' ? 'selected' : ''} 
-                onClick={() => setSelectedCategory('merchandise')}
-            >Merchandise</button>
-            
+          <button 
+            className={selectedCategory === 'merchandise' ? 'selected' : ''} 
+            onClick={() => setSelectedCategory('merchandise')}
+          >Merchandise</button>
         </div>
 
-          <div className="product-grid">
-            {filteredProducts.map((product) => (
+        <div className="product-grid">
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map((product) => (
               <div className="individual-product" key={product.id}>
                 <div className="image-wrapper">
                   <img src={product.image} alt={product.name} className="product-img" />
@@ -111,13 +133,16 @@ const ProductsPage = () => {
                   <i className="fas fa-cart-plus shopping-icon"></i>
                 </div>
               </div>
-            ))}
-          </div>
-        </section>
-        
-        <ContactSection />
-        <FeedbackPage />
-        <ScrollToTopButton />
+            ))
+          ) : (
+            <p className="no-products-message">No products found.</p>
+          )}
+        </div>
+      </section>
+      
+      <ContactSection />
+      <FeedbackPage />
+      <ScrollToTopButton />
     </div>
   );
 }
