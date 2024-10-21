@@ -10,6 +10,7 @@ import f2 from "../imgs/f2.png";
 import f3 from "../imgs/f3.png";
 import tumbler from "../imgs/tumbler.png";
 import ContactSection from './ContactSection';
+import Slideshow from './Slideshow';
 
 const HomePage = () => {
   const [products, setProducts] = useState([
@@ -109,6 +110,8 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+
+      <Slideshow />
 
       <section className={`whatsnew ${isVisible ? 'visible' : ''}`} ref={whatsNewRef}>
       <div>

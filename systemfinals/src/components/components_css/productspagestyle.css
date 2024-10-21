@@ -5,11 +5,12 @@
     align-items: center;
     justify-content: center;
     background-size: cover;
-    background-position: top center;
-    background-image: url('../../imgs/prodbg2.png');
+    background-position: bottom center;
+    background-image: url('../../imgs/bepic1.png');
     height: 35vh; 
     padding-top: 20px;
     text-align: center;
+
 }
 
 .introduction h1 {
