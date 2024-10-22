@@ -8,12 +8,17 @@ import FeedbackPage from './FeedbackPage';
 import NavBar from './NavBar';
 import defpfp from '../imgs/defaultpfp.jpg';
 import ContactSection from './ContactSection';
+import ChangePasswordPopup from './ChangePasswordPopup';
 
 const AccountPage = () => {
     const navigate = useNavigate();
     const [isEditing, setIsEditing] = useState(false);
     const [profilePic, setProfilePic] = useState(defpfp); 
     const [selectedFile, setSelectedFile] = useState(null);
+    const [currentPassword, setCurrentPassword] = useState('');
+    const [newPassword, setNewPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [isChangingPassword, setIsChangingPassword] = useState(false);
 
     const toLogout = () => {
         navigate('/login'); 
@@ -39,6 +44,10 @@ const AccountPage = () => {
         // DITO LALAGAY YUNG PAG ISSAVE NA SA DB YUNG SELECTED FILE
         handleEditClick();
         setSelectedFile(null);
+    };
+
+    const handleChangePassword = (currentPassword, newPassword) => {
+        console.log('Password change request:', { currentPassword, newPassword });
     };
 
     return (
@@ -102,14 +111,21 @@ const AccountPage = () => {
                         </div>
                         <div className="info-item">
                             <strong>Password</strong>
-                            <p>ilovemikmik123</p>
+                            <button className='changepassbtn' onClick={() => setIsChangingPassword(true)}>Change Password</button>
                         </div>
                     </div>
 
                     <button className="logout" onClick={toLogout}>Logout</button>
-                    </div>
-                    </div>
-              </section>
+                </div>
+              </div>
+            </section>
+
+            {isChangingPassword && (
+                <ChangePasswordPopup
+                    onClose={() => setIsChangingPassword(false)}
+                    onChangePassword={handleChangePassword}
+                />
+            )}
 
             <ContactSection />
             <FeedbackPage />

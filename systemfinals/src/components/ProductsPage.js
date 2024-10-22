@@ -56,7 +56,7 @@ const ProductsPage = () => {
     { 
       id: 5, 
       name: 'Female SHS Blouse', 
-      price: 589, 
+      price: 580, 
       image: require('../imgs/shs/shs_femaleblouse.png'),
       selectedSize: '', 
       category: 'senior high school', 
@@ -123,6 +123,7 @@ const ProductsPage = () => {
   
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const [overlayMessage, setOverlayMessage] = useState('');
 
   const filteredProducts = products.filter(product => {
     const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory;
@@ -146,6 +147,13 @@ const ProductsPage = () => {
 
   const handleCloseSizeChart = () => {
     setIsSizeChartOpen(false);
+  };
+
+  const handleAddToCart = () => {
+    setOverlayMessage('Added to cart');
+    setTimeout(() => {
+      setOverlayMessage('');
+    }, 2000);
   };
 
   return (
@@ -221,7 +229,7 @@ const ProductsPage = () => {
                 <div className="price-section">
                   <span className="price-label">PHP {product.price}</span>
                   {product.stock > 0 ? (
-                    <i className="fas fa-cart-plus shopping-icon"></i>
+                    <i className="fas fa-cart-plus shopping-icon" onClick={handleAddToCart}></i>
                   ) : (
                     <i className="fas fa-cart-plus shopping-icon disabled"></i>
                   )}
@@ -242,6 +250,8 @@ const ProductsPage = () => {
           )}
         </div>
       </section>
+
+      {overlayMessage && <div className="overlay-message">{overlayMessage}</div>}
       
       <ContactSection />
       <FeedbackPage />

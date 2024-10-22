@@ -89,7 +89,7 @@ h3 {
     color: #333;
 }
 
-.edit-button {
+.edit-button, .changepassbtn {
     background-color: #2a326e;
     color: white;
     border: none;
@@ -101,7 +101,7 @@ h3 {
     transition: background-color 0.3s, transform 0.3s;
 }
 
-.edit-button:hover {
+.edit-button:hover, .changepassbtn:hover {
     background-color: #1c1f4b;
     transform: scale(1.05);
 }
