@@ -50,6 +50,11 @@ const AccountPage = () => {
         console.log('Password change request:', { currentPassword, newPassword });
     };
 
+    const setSelectedCategory = (category) => {
+        navigate('/products', { state: { selectedCategory: category } });
+      };
+    
+
     return (
         <div>
             <NavBar />
@@ -127,7 +132,7 @@ const AccountPage = () => {
                 />
             )}
 
-            <ContactSection />
+            <ContactSection setSelectedCategory={setSelectedCategory} />
             <FeedbackPage />
             <ScrollToTopButton />
 

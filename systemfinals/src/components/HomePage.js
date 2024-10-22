@@ -21,7 +21,7 @@ const HomePage = () => {
       image: require('../imgs/merch/merch_nucap.png'),
       selectedSize: '', 
       category: 'merchandise', 
-      description: 'A trendy cap for Bulldogs fans.'
+      description: 'A trendy cap for Bulldogs fans.' 
     },
     { 
       id: 8, 
@@ -30,7 +30,7 @@ const HomePage = () => {
       image: require('../imgs/merch/merch_drawstring.png'),
       selectedSize: '', 
       category: 'merchandise', 
-      description:  'A convenient drawstring bag for daily use.'
+      description:  'A convenient drawstring bag for daily use.' 
     },
     { 
       id: 9, 
@@ -39,7 +39,7 @@ const HomePage = () => {
       image: require('../imgs/merch/merch_plushie.png'),
       selectedSize: '', 
       category: 'merchandise', 
-      description: 'A cute Bulldog plush toy for school spirit.'
+      description: 'A cute Bulldog plush toy for school spirit.' 
     },
     { 
       id: 10, 
@@ -48,39 +48,44 @@ const HomePage = () => {
       image: require('../imgs/merch/merch_tumbler.png'),
       selectedSize: '', 
       category: 'merchandise', 
-      description: 'A durable tumbler for on-the-go drinks.'
+      description: 'A durable tumbler for on-the-go drinks.' 
     }
   ]);
+
   const [isVisible, setIsVisible] = useState(false);
-  const whatsNewRef = useRef(null); 
+  const whatsNewRef = useRef(null);
   const navigate = useNavigate();
+
   const viewallproducts = () => {
-    navigate('/products'); 
+    navigate('/products');
   };
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
-        setIsVisible(true); 
+        setIsVisible(true);
         observer.disconnect();
       }
     });
 
     if (whatsNewRef.current) {
-      observer.observe(whatsNewRef.current); 
+      observer.observe(whatsNewRef.current);
     }
 
     return () => {
       if (whatsNewRef.current) {
-        observer.unobserve(whatsNewRef.current); 
+        observer.unobserve(whatsNewRef.current);
       }
     };
   }, []);
 
+  const setSelectedCategory = (category) => {
+    navigate('/products', { state: { selectedCategory: category } });
+  };
+
   return (
     <div>
       <NavBar />
-
       <section className="top-section">
         <div className="top-content">
           <h1>Wear your pride,</h1>
@@ -136,63 +141,62 @@ const HomePage = () => {
       </section>
 
       <section className={`whatsnew ${isVisible ? 'visible' : ''}`} ref={whatsNewRef}>
-      <div className='wntext'> 
-        <h1>What's new?</h1>
-        <h3>NU Tumbler</h3>
-        <p>Stay refreshed on the go with our sleek and stylish NU Tumbler! Made from durable, high-quality materials, this eco-friendly tumbler keeps your drinks hot or cold for hours. Show off your NU pride while enjoying your favorite beverages in style!</p>
-        <p>Available in color: Blue and Yellow</p>
-        <div className="price-container">
-          <p>PHP 199</p>
-        </div>
-      </div>
-      <img src={tumbler} alt="NU Tumbler" />
-    </section>
-
-    <section className="ftrdproducts">
-      <h1>Featured Products</h1>
-
-      <div className="product-list">
-        {products.map((product) => (
-          <div className="product-card" key={product.id}>
-            <div className="product-image">
-              <img src={product.image} alt={product.name} />
-            </div>
-            <h2 className="product-name">{product.name}</h2>
-            <p className="product-description">{product.description}</p>
-            <span className="price">PHP {product.price}</span>
+        <div className='wntext'> 
+          <h1>What's new?</h1>
+          <h3>NU Tumbler</h3>
+          <p>Stay refreshed on the go with our sleek and stylish NU Tumbler! Made from durable, high-quality materials, this eco-friendly tumbler keeps your drinks hot or cold for hours. Show off your NU pride while enjoying your favorite beverages in style!</p>
+          <p>Available in color: Blue and Yellow</p>
+          <div className="price-container">
+            <p>PHP 199</p>
           </div>
-        ))}
-      </div>
+        </div>
+        <img src={tumbler} alt="NU Tumbler" />
+      </section>
 
-      <button onClick={viewallproducts} className="viewall">View All</button>
-    </section>
+      <section className="ftrdproducts">
+        <h1>Featured Products</h1>
 
-    <Slideshow />
+        <div className="product-list">
+          {products.map((product) => (
+            <div className="product-card" key={product.id}>
+              <div className="product-image">
+                <img src={product.image} alt={product.name} />
+              </div>
+              <h2 className="product-name">{product.name}</h2>
+              <p className="product-description">{product.description}</p>
+              <span className="price">PHP {product.price}</span>
+            </div>
+          ))}
+        </div>
+
+        <button onClick={viewallproducts} className="viewall">View All</button>
+      </section>
+
+      <Slideshow />
 
       <section className='videonumoa'>
-      <div className="video-content-container">
-        <iframe
-          width="560"
-          height="315"
-          src="https://www.youtube.com/embed/tq0LMc3aIqY?si=TJB2O46iQNCqE2Iz"
-          title="YouTube video player"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerPolicy="strict-origin-when-cross-origin"
-          allowFullScreen
-        ></iframe>
+        <div className="video-content-container">
+          <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/tq0LMc3aIqY?si=TJB2O46iQNCqE2Iz"
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          ></iframe>
 
-        <div className='videodescription'>
-          <p>Come and take a peek at NU MOA.</p>
-          <p>Are you looking for a campus in Pasay City, near Manila, Paranaque, and Las Pinas, that offers courses like Dentistry, Optometry, Psychology, Information Technology, and Senior High School?</p>
-          <p>NU MOA’s state-of-the-art facilities are a testament to NU’s promise to provide quality, affordable, and accessible education.</p>
+          <div className='videodescription'>
+            <p>Come and take a peek at NU MOA.</p>
+            <p>Are you looking for a campus in Pasay City, near Manila, Paranaque, and Las Pinas, that offers courses like Dentistry, Optometry, Psychology, Information Technology, and Senior High School?</p>
+            <p>NU MOA’s state-of-the-art facilities are a testament to NU’s promise to provide quality, affordable, and accessible education.</p>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-
-
-      <ContactSection />
+      {/* Pass setSelectedCategory to ContactSection */}
+      <ContactSection setSelectedCategory={setSelectedCategory} />
       <FeedbackPage />
       <ScrollToTopButton />
     </div>

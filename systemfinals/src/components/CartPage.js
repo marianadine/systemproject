@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './components_css/cartpagestyle.css';
+import { useNavigate } from 'react-router-dom';
 
 import NavBar from './NavBar';
 import ContactSection from './ContactSection';
@@ -43,6 +44,12 @@ const CartPage = () => {
     setProducts(prevProducts => prevProducts.filter((_, i) => i !== index));
   };
 
+  const navigate = useNavigate();
+  const setSelectedCategory = (category) => {
+    navigate('/products', { state: { selectedCategory: category } });
+  };
+
+
   return (
     <div>
       <NavBar />
@@ -78,7 +85,6 @@ const CartPage = () => {
               </div>
               <p>PHP {quantities[index] * product.price}</p>
               <button
-                aria-label="Delete product"
                 className="delete-button"
                 onClick={() => removeProduct(index)}
               >
@@ -121,7 +127,7 @@ const CartPage = () => {
 
       <ScrollToTopButton />
       <FeedbackPage />
-      <ContactSection />
+      <ContactSection setSelectedCategory={setSelectedCategory} />
     </div>
   );
 };
