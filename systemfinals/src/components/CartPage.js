@@ -64,27 +64,6 @@ const CartPage = () => {
             </button>
           </div>
           
-          {/* Second Product */}
-          <div className='individualproducts'>
-            <div className='productimagename'>
-              <img src={product} alt="Cap" />
-              <p>Bulldogs Cap</p>
-            </div>
-            <p>PHP 199</p>
-            <div className='quantity-control'>
-              <button onClick={() => decreaseQuantity(1)} aria-label="Decrease quantity">
-                <i className="fas fa-minus"></i>
-              </button>
-              <p>{quantities[1]}</p>
-              <button onClick={() => increaseQuantity(1)} aria-label="Increase quantity">
-                <i className="fas fa-plus"></i>
-              </button>
-            </div>
-            <p>PHP {quantities[1] * 199}</p>
-            <button aria-label="Delete product" className="delete-button">
-              <i className="fas fa-trash"></i>
-            </button>
-          </div>
         </div>
 
         <div className='ordersummary'>
@@ -95,7 +74,7 @@ const CartPage = () => {
           </div>
           <div className='summary-item'>
             <p>Items:</p>
-            <p>{quantities.reduce((sum, quantity) => sum + quantity, 0)}</p> {/* Total items */}
+            <p>{quantities.reduce((sum, quantity) => sum + quantity, 0)}</p>
           </div>
           <div className='summary-item'>
             <p>Pickup Date:</p>
@@ -111,7 +90,7 @@ const CartPage = () => {
           
           <div className='total-price'>
             <p>Total Price:</p>
-            <p>PHP {quantities.reduce((sum, quantity) => sum + (quantity * 199), 0)}</p> {/* Total price */}
+            <p>PHP {quantities.reduce((sum, quantity) => sum + (quantity * 199), 0)}</p>
           </div>
           
           <button>Checkout</button>
