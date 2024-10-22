@@ -7,25 +7,26 @@ import NavBar from './NavBar';
 import ContactSection from './ContactSection';
 import ScrollToTopButton from './ScrollToTopButton';
 import FeedbackPage from './FeedbackPage';
-import ConfirmationModal from './ConfirmationModal'; // Ensure this path is correct
+import ConfirmationModal from './ConfirmationModal'; 
 
-import product from "../imgs/merch/merch_nucap.png"; // Example product image
+import product from "../imgs/merch/merch_nucap.png"; // ex. product image
+import product1 from "../imgs/college/college_femaleblouse.png"; // ex. product image
 
 const CartPage = () => {
   const [quantities, setQuantities] = useState([3, 1]);
   const [products, setProducts] = useState([
     { name: 'Bulldogs Cap', price: 199, image: product },
-    { name: 'Other Product', price: 150, image: product }, // Example second product
+    { name: 'Female Traditional Blouse', price: 560, image: product1 }, // ex. second product
   ]);
 
-  const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const totalItems = () => quantities.reduce((sum, quantity) => sum + quantity, 0);
 
   const increaseQuantity = (index) => {
     setQuantities(prevQuantities => {
       const newQuantities = [...prevQuantities];
-      // Check if the total items in the cart is less than 5
+      // check if the total items in the cart is less than 5
       if (totalItems() < 5) {
         newQuantities[index] += 1;
       }
@@ -157,10 +158,9 @@ const CartPage = () => {
             <p>PHP {quantities.reduce((sum, quantity, index) => sum + (quantity * products[index].price), 0)}</p>
           </div>
 
-          <button onClick={() => setIsModalOpen(true)}>Checkout</button> {/* Open modal on click */}
+          <button onClick={() => setIsModalOpen(true)}>Checkout</button>
         </div>
 
-        {/* Confirmation Modal */}
         <ConfirmationModal 
           isOpen={isModalOpen} 
           onClose={() => setIsModalOpen(false)} 

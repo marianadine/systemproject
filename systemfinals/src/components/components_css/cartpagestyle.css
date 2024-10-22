@@ -169,6 +169,12 @@
   margin: 0;
 }
 
+.productimagename p {
+  max-width: 150px;
+  text-align: center;
+}
+
+
 .quantity-control {
   display: flex; 
   align-items: center; 
