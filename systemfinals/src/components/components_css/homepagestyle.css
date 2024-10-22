@@ -255,6 +255,7 @@
     font-weight: 600;
     font-size: 35px;
     margin-bottom: 50px;
+    color: #34408e;
 }
 
 .product-list {
@@ -302,6 +303,10 @@
     font-size: 14px;
     color: #666;
     margin: 10px 0;
+}
+
+.price {
+    font-weight: 600;
 }
 
 .viewall {

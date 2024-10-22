@@ -135,8 +135,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      <Slideshow />
-
       <section className={`whatsnew ${isVisible ? 'visible' : ''}`} ref={whatsNewRef}>
       <div className='wntext'> 
         <h1>What's new?</h1>
@@ -168,6 +166,8 @@ const HomePage = () => {
 
       <button onClick={viewallproducts} className="viewall">View All</button>
     </section>
+
+    <Slideshow />
 
       <section className='videonumoa'>
       <div className="video-content-container">
