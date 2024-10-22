@@ -1,27 +1,31 @@
 import React, { useState } from 'react';
 import './components_css/cartpagestyle.css';
 import { useNavigate } from 'react-router-dom';
+import { jsPDF } from 'jspdf'; // Import jsPDF
 
 import NavBar from './NavBar';
 import ContactSection from './ContactSection';
 import ScrollToTopButton from './ScrollToTopButton';
 import FeedbackPage from './FeedbackPage';
+import ConfirmationModal from './ConfirmationModal'; // Ensure this path is correct
 
-import product from "../imgs/merch/merch_nucap.png"; // ex. product image
+import product from "../imgs/merch/merch_nucap.png"; // Example product image
 
 const CartPage = () => {
   const [quantities, setQuantities] = useState([3, 1]);
   const [products, setProducts] = useState([
     { name: 'Bulldogs Cap', price: 199, image: product },
-    { name: 'Other Product', price: 150, image: product }, // ex. second product
+    { name: 'Other Product', price: 150, image: product }, // Example second product
   ]);
+
+  const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
 
   const totalItems = () => quantities.reduce((sum, quantity) => sum + quantity, 0);
 
   const increaseQuantity = (index) => {
     setQuantities(prevQuantities => {
       const newQuantities = [...prevQuantities];
-      // check if the total items in the cart is less than 5
+      // Check if the total items in the cart is less than 5
       if (totalItems() < 5) {
         newQuantities[index] += 1;
       }
@@ -49,6 +53,38 @@ const CartPage = () => {
     navigate('/products', { state: { selectedCategory: category } });
   };
 
+  // function to generate PDF
+  const generatePDF = () => {
+    const doc = new jsPDF();
+    
+    doc.setFontSize(20);
+    doc.text('Cart Summary', 14, 22);
+    
+    doc.setFontSize(12);
+    doc.text(`Name: Maria Nadine Faye Rufo`, 14, 30);
+    doc.text(`Items: ${totalItems()}`, 14, 36);
+    doc.text(`Pickup Date: September 12, 2025`, 14, 42);
+    
+    doc.text('Products:', 14, 50);
+    products.forEach((product, index) => {
+      doc.text(`${index + 1}. ${product.name} - PHP ${product.price} x ${quantities[index]} = PHP ${quantities[index] * product.price}`, 14, 56 + index * 6);
+    });
+
+    const totalPrice = quantities.reduce((sum, quantity, index) => sum + (quantity * products[index].price), 0);
+    doc.text(`Total Price: PHP ${totalPrice}`, 14, 56 + products.length * 6);
+    
+    // save the PDF
+    doc.save('cart_summary.pdf');
+
+    // clear the cart
+    setQuantities([]);
+    setProducts([]);
+  };
+
+  const handleCheckout = () => {
+    generatePDF(); // Generate the PDF
+    setIsModalOpen(false); // Close the modal
+  };
 
   return (
     <div>
@@ -121,8 +157,15 @@ const CartPage = () => {
             <p>PHP {quantities.reduce((sum, quantity, index) => sum + (quantity * products[index].price), 0)}</p>
           </div>
 
-          <button>Checkout</button>
+          <button onClick={() => setIsModalOpen(true)}>Checkout</button> {/* Open modal on click */}
         </div>
+
+        {/* Confirmation Modal */}
+        <ConfirmationModal 
+          isOpen={isModalOpen} 
+          onClose={() => setIsModalOpen(false)} 
+          onConfirm={handleCheckout} 
+        />
       </div>
 
       <ScrollToTopButton />
