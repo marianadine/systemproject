@@ -14,24 +14,48 @@ import Slideshow from './Slideshow';
 
 const HomePage = () => {
   const [products, setProducts] = useState([
-    { id: 1, name: 'Product 1', price: 450, image: 'path/to/your/image1.jpg', selectedSize: '' },
-    { id: 2, name: 'Product 2', price: 500, image: 'path/to/your/image2.jpg', selectedSize: '' },
-    { id: 3, name: 'Product 3', price: 600, image: 'path/to/your/image3.jpg', selectedSize: '' },
-    { id: 4, name: 'Product 4', price: 700, image: 'path/to/your/image4.jpg', selectedSize: '' }
+    { 
+      id: 7, 
+      name: 'Bulldogs Cap', 
+      price: 199, 
+      image: require('../imgs/merch/merch_nucap.png'),
+      selectedSize: '', 
+      category: 'merchandise', 
+      description: 'A trendy cap for Bulldogs fans.'
+    },
+    { 
+      id: 8, 
+      name: 'NU Drawstring Bag', 
+      price: 149, 
+      image: require('../imgs/merch/merch_drawstring.png'),
+      selectedSize: '', 
+      category: 'merchandise', 
+      description:  'A convenient drawstring bag for daily use.'
+    },
+    { 
+      id: 9, 
+      name: 'Bulldog Stuffed Toy', 
+      price: 299, 
+      image: require('../imgs/merch/merch_plushie.png'),
+      selectedSize: '', 
+      category: 'merchandise', 
+      description: 'A cute Bulldog plush toy for school spirit.'
+    },
+    { 
+      id: 10, 
+      name: 'NU Tumbler', 
+      price: 399, 
+      image: require('../imgs/merch/merch_tumbler.png'),
+      selectedSize: '', 
+      category: 'merchandise', 
+      description: 'A durable tumbler for on-the-go drinks.'
+    }
   ]);
   const [isVisible, setIsVisible] = useState(false);
   const whatsNewRef = useRef(null); 
   const navigate = useNavigate();
   const viewallproducts = () => {
     navigate('/products'); 
-  };
-
-  const handleSizeClick = (id, size) => {
-    setProducts((prevProducts) =>
-      prevProducts.map((product) =>
-        product.id === id ? { ...product, selectedSize: size } : product
-      )
-    );
   };
 
   useEffect(() => {
@@ -114,7 +138,7 @@ const HomePage = () => {
       <Slideshow />
 
       <section className={`whatsnew ${isVisible ? 'visible' : ''}`} ref={whatsNewRef}>
-      <div>
+      <div className='wntext'> 
         <h1>What's new?</h1>
         <h3>NU Tumbler</h3>
         <p>Stay refreshed on the go with our sleek and stylish NU Tumbler! Made from durable, high-quality materials, this eco-friendly tumbler keeps your drinks hot or cold for hours. Show off your NU pride while enjoying your favorite beverages in style!</p>
@@ -136,22 +160,8 @@ const HomePage = () => {
               <img src={product.image} alt={product.name} />
             </div>
             <h2 className="product-name">{product.name}</h2>
-            <div className="size-options">
-              {['S', 'M', 'L', 'XL'].map((size) => (
-                <button
-                  key={size}
-                  className={`size-button ${product.selectedSize === size ? 'active' : ''}`}
-                  onClick={() => handleSizeClick(product.id, size)}
-                >
-                  {size}
-                </button>
-              ))}
-            </div>
-            <p className="product-description">Short description of the product.</p>
-            <div className="price-container">
-              <span className="price">PHP {product.price}</span>
-              <i className="fas fa-cart-plus icon"></i>
-            </div>
+            <p className="product-description">{product.description}</p>
+            <span className="price">PHP {product.price}</span>
           </div>
         ))}
       </div>

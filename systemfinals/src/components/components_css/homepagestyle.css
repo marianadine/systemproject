@@ -133,18 +133,18 @@
 }
 
   /* -------------------- WHAT'S NEW -------------------- */
-  @keyframes fadeIn {
+@keyframes fadeIn {
     0% {
-      opacity: 0;
-      transform: translateY(20px);
+        opacity: 0;
+        transform: translateY(20px);
     }
     100% {
-      opacity: 1;
-      transform: translateY(0);
+        opacity: 1;
+        transform: translateY(0);
     }
-  }
-  
-  .whatsnew {
+}
+
+.whatsnew {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -156,13 +156,16 @@
     margin-bottom: 20px;
     opacity: 0;
     transition: opacity 0.5s; 
-  }
-  
-  .whatsnew.visible {
+}
+
+.whatsnew.visible {
     opacity: 1;
     animation: fadeIn 4.5s forwards;
-  }
-  
+}
+
+.wntext {
+    padding-left: 80px;
+}
 
 .whatsnew h1 {
     font-size: 100px;
@@ -184,6 +187,7 @@
     color: #555;
     line-height: 1.5;
     max-width: 900px;
+    margin-bottom: 10px;
 }
 
 .color-options {
@@ -235,12 +239,9 @@
 .whatsnew img {
     width: 400px;
     height: auto;
+    margin-right: 130px !important;
 }
 
-.whatsnew > div {
-    padding: 50px;
-    margin-right: 120;
-}
   
 /* -------------------- PRODUCT CARD -------------------- */
 .ftrdproducts {
@@ -250,7 +251,7 @@
     align-items: center;
 }
 
-.ftrdproducts h1{
+.ftrdproducts h1 {
     font-weight: 600;
     font-size: 35px;
     margin-bottom: 50px;
@@ -270,11 +271,17 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
     background-color: #fff;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 .product-image {
     width: 100%; 
-    height: 200px; 
+    height: 350px; 
     overflow: hidden; 
     border-radius: 10px;
 }
@@ -291,54 +298,10 @@
     margin: 10px 0;
 }
 
-.size-options {
-    display: flex;
-    justify-content: center;
-    margin: 10px 0;
-}
-
-.size-button {
-    background-color: #f0f0f0; 
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
-    margin: 0 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.size-button:hover {
-    background-color: #d2d2d2; 
-}
-
-.size-button.active {
-    background-color: #f6d130; 
-    color: white;
-}
-
 .product-description {
     font-size: 14px;
     color: #666;
     margin: 10px 0;
-}
-
-.price-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 18px;
-    margin-top: 10px;
-}
-
-.icon {
-    color: #34408e;
-    cursor: pointer;
-    font-size: 20px;
-    transition: color 0.3s ease;
-}
-
-.icon:hover {
-    color: #f6d130;
 }
 
 .viewall {
@@ -357,6 +320,7 @@
 .viewall:hover {
     background-color: #2a326e;
 }
+
 
 /* -------------------- NU MOA YT VIDEO -------------------- */
 .videonumoa {

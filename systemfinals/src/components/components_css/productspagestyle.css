@@ -5,8 +5,8 @@
     align-items: center;
     justify-content: center;
     background-size: cover;
-    background-position: bottom center;
-    background-image: url('../../imgs/bepic1.png');
+    background-position: center;
+    background-image: url('../../imgs/prodbg.png');
     height: 35vh; 
     padding-top: 20px;
     text-align: center;
@@ -131,17 +131,23 @@
 }
 
 .individual-product {
-    width: 300px; 
+    width: 350px; 
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
     background-color: #fff;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: auto; 
+    min-height: 500px;
 }
 
 .image-wrapper {
     width: 100%; 
-    height: 200px; 
+    height: 500px;
     overflow: hidden; 
     border-radius: 10px;
 }
@@ -183,6 +189,31 @@
     color: white;
 }
 
+.stock-status {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.in-stock {
+    color: green;
+    font-weight: bold;
+}
+
+.low-stock {
+    color: orange;
+    font-weight: bold;
+}
+
+.out-of-stock {
+    color: red;
+    font-weight: bold;
+}
+
+.no-products-message {
+    text-align: center;
+    color: #999;
+}
+
 .description-text {
     font-size: 14px;
     color: #666;
@@ -222,4 +253,10 @@
 
 .shopping-icon:hover {
     color: #f6d130;
+}
+
+.shopping-icon.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
 }

@@ -9,30 +9,120 @@ import SizePopUpChart from './SizePopUpChart';
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([
-    { id: 1, name: 'Product 1', price: 450, image: 'path/to/your/image1.jpg', selectedSize: '', category: 'college', description: 'Description for Product 1', hasSizes: true },
-    { id: 2, name: 'Product 2', price: 500, image: 'path/to/your/image2.jpg', selectedSize: '', category: 'senior high school', description: 'Description for Product 2', hasSizes: true },
-    { id: 3, name: 'Product 3', price: 600, image: 'path/to/your/image3.jpg', selectedSize: '', category: 'merchandise', description: 'Description for Product 3', hasSizes: false },
-    { id: 4, name: 'Product 4', price: 700, image: 'path/to/your/image4.jpg', selectedSize: '', category: 'college', description: 'Description for Product 4', hasSizes: true },
-    { id: 5, name: 'Product 5', price: 800, image: 'path/to/your/image5.jpg', selectedSize: '', category: 'senior high school', description: 'Description for Product 5', hasSizes: true },
-    { id: 6, name: 'Product 6', price: 850, image: 'path/to/your/image6.jpg', selectedSize: '', category: 'merchandise', description: 'Description for Product 6', hasSizes: false },
-    { id: 7, name: 'Product 7', price: 900, image: 'path/to/your/image7.jpg', selectedSize: '', category: 'college', description: 'Description for Product 7', hasSizes: true },
-    { id: 8, name: 'Product 8', price: 950, image: 'path/to/your/image8.jpg', selectedSize: '', category: 'senior high school', description: 'Description for Product 8', hasSizes: true },
-    { id: 9, name: 'Product 9', price: 1000, image: 'path/to/your/image9.jpg', selectedSize: '', category: 'merchandise', description: 'Description for Product 9', hasSizes: false },
-    { id: 10, name: 'Product 10', price: 1050, image: 'path/to/your/image10.jpg', selectedSize: '', category: 'college', description: 'Description for Product 10', hasSizes: true },
-    { id: 11, name: 'Product 11', price: 1100, image: 'path/to/your/image11.jpg', selectedSize: '', category: 'senior high school', description: 'Description for Product 11', hasSizes: true },
-    { id: 12, name: 'Product 12', price: 1150, image: 'path/to/your/image12.jpg', selectedSize: '', category: 'merchandise', description: 'Description for Product 12', hasSizes: false },
-    { id: 13, name: 'Product 13', price: 1200, image: 'path/to/your/image13.jpg', selectedSize: '', category: 'college', description: 'Description for Product 13', hasSizes: true },
-    { id: 14, name: 'Product 14', price: 1250, image: 'path/to/your/image14.jpg', selectedSize: '', category: 'senior high school', description: 'Description for Product 14', hasSizes: true },
-    { id: 15, name: 'Product 15', price: 1300, image: 'path/to/your/image15.jpg', selectedSize: '', category: 'merchandise', description: 'Description for Product 15', hasSizes: false },
-    { id: 16, name: 'Product 16', price: 1350, image: 'path/to/your/image16.jpg', selectedSize: '', category: 'college', description: 'Description for Product 16', hasSizes: true },
-    { id: 17, name: 'Product 17', price: 1400, image: 'path/to/your/image17.jpg', selectedSize: '', category: 'senior high school', description: 'Description for Product 17', hasSizes: true },
-    { id: 18, name: 'Product 18', price: 1450, image: 'path/to/your/image18.jpg', selectedSize: '', category: 'merchandise', description: 'Description for Product 18', hasSizes: false },
-    { id: 19, name: 'Product 19', price: 1500, image: 'path/to/your/image19.jpg', selectedSize: '', category: 'college', description: 'Description for Product 19', hasSizes: true },
-    { id: 20, name: 'Product 20', price: 1550, image: 'path/to/your/image20.jpg', selectedSize: '', category: 'senior high school', description: 'Description for Product 20', hasSizes: true },
+    { 
+      id: 1, 
+      name: 'Male Traditional Polo', 
+      price: 560, 
+      image: require('../imgs/college/college_malepolo.png'),
+      selectedSize: '', 
+      category: 'college', 
+      description: 'A traditional male polo for college students.', 
+      hasSizes: true,
+      stock: 15,
+    },
+    { 
+      id: 2, 
+      name: 'Male Traditional Pants', 
+      price: 700, 
+      image: require('../imgs/college/college_malepants.png'),
+      selectedSize: '', 
+      category: 'college', 
+      description: 'Classic pants for male college students.', 
+      hasSizes: true,
+      stock: 5,
+    },
+    { 
+      id: 3, 
+      name: 'Female Traditional Blouse', 
+      price: 560, 
+      image: require('../imgs/college/college_femaleblouse.png'),
+      selectedSize: '', 
+      category: 'college', 
+      description: 'A traditional female blouse for college students.', 
+      hasSizes: true,
+      stock: 8,
+    },
+    { 
+      id: 4, 
+      name: 'Female Traditional Pants', 
+      price: 700, 
+      image: require('../imgs/college/college_femalepants.png'),
+      selectedSize: '', 
+      category: 'college', 
+      description: 'Classic pants for female college students.', 
+      hasSizes: true,
+      stock: 0,
+    },
+    { 
+      id: 5, 
+      name: 'Female SHS Blouse', 
+      price: 589, 
+      image: require('../imgs/shs/shs_femaleblouse.png'),
+      selectedSize: '', 
+      category: 'senior high school', 
+      description: 'A traditional female blouse for senior high school students.', 
+      hasSizes: true,
+      stock: 12,
+    },
+    { 
+      id: 6, 
+      name: 'Male SHS Polo', 
+      price: 580, 
+      image: require('../imgs/shs/shs_malepolo.png'),
+      selectedSize: '', 
+      category: 'senior high school', 
+      description: 'A stylish blouse for male senior high school students.', 
+      hasSizes: true,
+      stock: 3,
+    },
+    { 
+      id: 7, 
+      name: 'Bulldogs Cap', 
+      price: 199, 
+      image: require('../imgs/merch/merch_nucap.png'),
+      selectedSize: '', 
+      category: 'merchandise', 
+      description: 'A trendy cap for Bulldogs fans.', 
+      hasSizes: false,
+      stock: 20,
+    },
+    { 
+      id: 8, 
+      name: 'NU Drawstring Bag', 
+      price: 149, 
+      image: require('../imgs/merch/merch_drawstring.png'),
+      selectedSize: '', 
+      category: 'merchandise', 
+      description:  'A convenient drawstring bag for daily use.', 
+      hasSizes: false,
+      stock: 10,
+    },
+    { 
+      id: 9, 
+      name: 'Bulldog Stuffed Toy', 
+      price: 299, 
+      image: require('../imgs/merch/merch_plushie.png'),
+      selectedSize: '', 
+      category: 'merchandise', 
+      description: 'A cute Bulldog plush toy for school spirit.', 
+      hasSizes: false,
+      stock: 0,
+    },
+    { 
+      id: 10, 
+      name: 'NU Tumbler', 
+      price: 399, 
+      image: require('../imgs/merch/merch_tumbler.png'),
+      selectedSize: '', 
+      category: 'merchandise', 
+      description: 'A durable tumbler for on-the-go drinks.', 
+      hasSizes: false,
+      stock: 25,
+    }
   ]);
   
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [searchQuery, setSearchQuery] = useState(''); 
+  const [searchQuery, setSearchQuery] = useState('');
 
   const filteredProducts = products.filter(product => {
     const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory;
@@ -130,7 +220,20 @@ const ProductsPage = () => {
                 <p className="description-text">{product.description}</p>
                 <div className="price-section">
                   <span className="price-label">PHP {product.price}</span>
-                  <i className="fas fa-cart-plus shopping-icon"></i>
+                  {product.stock > 0 ? (
+                    <i className="fas fa-cart-plus shopping-icon"></i>
+                  ) : (
+                    <i className="fas fa-cart-plus shopping-icon disabled"></i>
+                  )}
+                </div>
+                <div className="stock-status">
+                  {product.stock > 10 ? (
+                    <span className="in-stock">In Stock</span>
+                  ) : product.stock > 0 ? (
+                    <span className="low-stock">Low Stock ({product.stock})</span>
+                  ) : (
+                    <span className="out-of-stock">Out of Stock</span>
+                  )}
                 </div>
               </div>
             ))
