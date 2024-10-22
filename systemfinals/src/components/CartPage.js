@@ -135,7 +135,7 @@ const CartPage = () => {
           <h1>Order Summary</h1>
           <div className='summary-item'>
             <p>Name:</p>
-            <p>Maria Nadine Faye Rufo</p>
+            <p>Maria Nadine Faye Rufo</p> {/* Full Name from DB */}
           </div>
           <div className='summary-item'>
             <p>Items:</p>
@@ -143,7 +143,7 @@ const CartPage = () => {
           </div>
           <div className='summary-item'>
             <p>Pickup Date:</p>
-            <p>September 12, 2025</p>
+            <p>September 12, 2025</p> {/* Date from DB */}
           </div>
 
           <hr />
