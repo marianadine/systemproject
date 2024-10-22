@@ -6,22 +6,21 @@ import ContactSection from './ContactSection';
 import ScrollToTopButton from './ScrollToTopButton';
 import FeedbackPage from './FeedbackPage';
 
-import product from "../imgs/merch/merch_nucap.png"; // Example product image
+import product from "../imgs/merch/merch_nucap.png"; // ex. product image
 
 const CartPage = () => {
   const [quantities, setQuantities] = useState([3, 1]);
   const [products, setProducts] = useState([
     { name: 'Bulldogs Cap', price: 199, image: product },
-    { name: 'Other Product', price: 150, image: product }, // Example second product
+    { name: 'Other Product', price: 150, image: product }, // ex. second product
   ]);
 
-  // Helper function to calculate the total number of items in the cart
   const totalItems = () => quantities.reduce((sum, quantity) => sum + quantity, 0);
 
   const increaseQuantity = (index) => {
     setQuantities(prevQuantities => {
       const newQuantities = [...prevQuantities];
-      // Check if the total items in the cart is less than 5
+      // check if the total items in the cart is less than 5
       if (totalItems() < 5) {
         newQuantities[index] += 1;
       }
