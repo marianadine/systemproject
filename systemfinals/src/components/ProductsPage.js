@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './components_css/productspagestyle.css';
 
 import NavBar from './NavBar';
@@ -149,13 +150,6 @@ const ProductsPage = () => {
     setIsSizeChartOpen(false);
   };
 
-  const handleAddToCart = () => {
-    setOverlayMessage('Added to cart');
-    setTimeout(() => {
-      setOverlayMessage('');
-    }, 2000);
-  };
-
   return (
     <div>
       <NavBar />
@@ -229,35 +223,27 @@ const ProductsPage = () => {
                 <div className="price-section">
                   <span className="price-label">PHP {product.price}</span>
                   {product.stock > 0 ? (
-                    <i className="fas fa-cart-plus shopping-icon" onClick={handleAddToCart}></i>
+                    <i
+                      className="fas fa-cart-plus shopping-icon"
+                    ></i>
                   ) : (
-                    <i className="fas fa-cart-plus shopping-icon disabled"></i>
-                  )}
-                </div>
-                <div className="stock-status">
-                  {product.stock > 10 ? (
-                    <span className="in-stock">In Stock</span>
-                  ) : product.stock > 0 ? (
-                    <span className="low-stock">Low Stock ({product.stock})</span>
-                  ) : (
-                    <span className="out-of-stock">Out of Stock</span>
+                    <span className="out-of-stock">Out of stock</span>
                   )}
                 </div>
               </div>
             ))
           ) : (
-            <p className="no-products-message">No products found.</p>
+            <p>No products found.</p>
           )}
         </div>
       </section>
 
-      {overlayMessage && <div className="overlay-message">{overlayMessage}</div>}
-      
-      <ContactSection />
-      <FeedbackPage />
+      {overlayMessage && <div className="overlay">{overlayMessage}</div>}
       <ScrollToTopButton />
+      <FeedbackPage/>
+      <ContactSection />
     </div>
   );
-}
+};
 
 export default ProductsPage;

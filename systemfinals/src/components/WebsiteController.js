@@ -7,10 +7,12 @@ import HomePage from './HomePage';
 import ProductsPage from './ProductsPage';
 import AccountPage from './AccountPage';
 import Cart from './CartPage';
+import ScrollToTop from './ScrollToTop';
 
 const WebsiteController = () => {
   return (
     <Router>
+      <ScrollToTop/>
       <Routes>
         <Route path="/" element={<LoadingPage />} /> 
         <Route path="/login" element={<LoginPage />} /> 

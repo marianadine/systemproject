@@ -7,6 +7,7 @@ const FeedbackPage = () => {
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
   const [thankYouMessageVisible, setThankYouMessageVisible] = useState(false);
+  const [thankYouMessage, setThankYouMessage] = useState('');
   const feedbackRef = useRef(null);
 
   const minCharacterCount = 5;
@@ -14,6 +15,24 @@ const FeedbackPage = () => {
 
   const toggleFeedbackForm = () => {
     setIsFeedbackVisible(!isFeedbackVisible);
+  };
+
+  // Get custom thank you message based on the rating
+  const getThankYouMessage = () => {
+    switch (rating) {
+      case 1:
+        return "Thank you for your feedback. We'll work on improving!";
+      case 2:
+        return "Thanks! We're always looking for ways to get better.";
+      case 3:
+        return "Thank you! We appreciate your balanced feedback.";
+      case 4:
+        return "Thanks a lot! We're glad you had a good experience.";
+      case 5:
+        return "Awesome! Thank you for your great feedback!";
+      default:
+        return "Thank you for your feedback!";
+    }
   };
 
   const handleSubmitFeedback = (e) => {
@@ -27,10 +46,14 @@ const FeedbackPage = () => {
     }
 
     console.log(`Feedback: ${feedback}, Rating: ${rating}`);
-    
-    setIsFeedbackVisible(false); 
-    setFeedback(''); 
-    setRating(0); 
+
+    setIsFeedbackVisible(false);
+    setFeedback('');
+    setRating(0);
+
+    // Set custom thank you message
+    setThankYouMessage(getThankYouMessage());
+
     setThankYouMessageVisible(true);
 
     setTimeout(() => {
@@ -41,7 +64,7 @@ const FeedbackPage = () => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (feedbackRef.current && !feedbackRef.current.contains(event.target)) {
-        setIsFeedbackVisible(false); 
+        setIsFeedbackVisible(false);
       }
     };
 
@@ -63,6 +86,7 @@ const FeedbackPage = () => {
   const handleStarHoverLeave = () => {
     setHoverRating(0);
   };
+
   const currentCharacterCount = feedback.replace(/\s+/g, '').length;
 
   return (
@@ -117,7 +141,7 @@ const FeedbackPage = () => {
 
       {thankYouMessageVisible && (
         <div className="thank-you-message">
-          Thank you for your feedback!
+          {thankYouMessage}
         </div>
       )}
     </div>
