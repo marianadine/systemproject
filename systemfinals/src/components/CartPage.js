@@ -55,29 +55,57 @@ const CartPage = () => {
   };
 
   // function to generate PDF
-  const generatePDF = () => {
+  const generatePDF = (orderId) => {
     const doc = new jsPDF();
-    
-    doc.setFontSize(20);
-    doc.text('Cart Summary', 14, 22);
-    
+
+    // Header
+    doc.setFontSize(18);
+    doc.text('NU MOA Bulldogs Exchange', 14, 10);
+    doc.setFontSize(10);
+    doc.text('Order Summary', 14, 18); 
+    doc.line(10, 20, 200, 20); 
+
+    // User Info
     doc.setFontSize(12);
-    doc.text(`Name: Maria Nadine Faye Rufo`, 14, 30);
-    doc.text(`Items: ${totalItems()}`, 14, 36);
-    doc.text(`Pickup Date: September 12, 2025`, 14, 42);
-    
-    doc.text('Products:', 14, 50);
+    doc.text(`Name: Maria Nadine Faye Rufo`, 14, 25);
+    doc.text(`Items: ${totalItems()}`, 14, 30);
+    doc.text(`Pickup Date: September 12, 2025`, 14, 35);
+
+    doc.text('', 14, 40); 
+
+    doc.setFontSize(12);
+    doc.text('Products:', 14, 45);
+
+    doc.setFontSize(10);
     products.forEach((product, index) => {
-      doc.text(`${index + 1}. ${product.name} - PHP ${product.price} x ${quantities[index]} = PHP ${quantities[index] * product.price}`, 14, 56 + index * 6);
+      const yPosition = 50 + index * 10; 
+      doc.text(`${index + 1}. ${product.name}`, 14, yPosition);
+
+      const priceXPosition = 170; 
+      doc.text(`PHP ${product.price} x ${quantities[index]} = PHP ${quantities[index] * product.price}`, priceXPosition, yPosition, { align: 'right' }); 
     });
 
+    // Calculate total price
     const totalPrice = quantities.reduce((sum, quantity, index) => sum + (quantity * products[index].price), 0);
-    doc.text(`Total Price: PHP ${totalPrice}`, 14, 56 + products.length * 6);
     
-    // save the PDF
-    doc.save('cart_summary.pdf');
+    // Position and format total price
+    const totalYPosition = 50 + products.length * 10; 
+    doc.setFontSize(12); 
+    doc.setFont(undefined, 'bold');
+    doc.text(`Total Price: PHP ${totalPrice}`, 170, totalYPosition, { align: 'right' });
 
-    // clear the cart
+    doc.line(10, 20, 200, 20); 
+
+    const thankYouMessage = 'Thank you for your purchase! Please present this along with your school ID to the cashier when you come to pick up your order.';
+    const messageXPosition = doc.internal.pageSize.getWidth() / 2;
+    doc.setFontSize(8);
+    doc.text(thankYouMessage, messageXPosition, totalYPosition + 10, { align: 'center', baseline: 'middle' }); 
+
+    // Save the PDF with a unique name
+    const fileName = `Order_${orderId}_Maria_Nadine_Faye_Rufo.pdf`; // Generate unique order ID
+    doc.save(fileName);
+
+    // Clear the cart
     setQuantities([]);
     setProducts([]);
   };
