@@ -124,7 +124,7 @@ const ProductsPage = () => {
   
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [overlayMessage, setOverlayMessage] = useState('');
+  const [cartMessage, setCartMessage] = useState('');
 
   const filteredProducts = products.filter(product => {
     const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory;
@@ -148,6 +148,13 @@ const ProductsPage = () => {
 
   const handleCloseSizeChart = () => {
     setIsSizeChartOpen(false);
+  };
+
+  const handleAddToCart = () => {  // add to cart function
+    setCartMessage('Added to cart!');
+    setTimeout(() => {
+      setCartMessage('');
+    }, 2000);
   };
 
   return (
@@ -225,6 +232,7 @@ const ProductsPage = () => {
                   {product.stock > 0 ? (
                     <i
                       className="fas fa-cart-plus shopping-icon"
+                      onClick={handleAddToCart}
                     ></i>
                   ) : (
                     <span className="out-of-stock">Out of stock</span>
@@ -238,7 +246,7 @@ const ProductsPage = () => {
         </div>
       </section>
 
-      {overlayMessage && <div className="overlay">{overlayMessage}</div>}
+      {cartMessage && <div className="overlay">{cartMessage}</div>}
       <ScrollToTopButton />
       <FeedbackPage/>
       <ContactSection setSelectedCategory={setSelectedCategory} />

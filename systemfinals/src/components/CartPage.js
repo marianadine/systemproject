@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './components_css/cartpagestyle.css';
 import { useNavigate } from 'react-router-dom';
-import { jsPDF } from 'jspdf'; // Import jsPDF
+import { jsPDF } from 'jspdf';
 
 import NavBar from './NavBar';
 import ContactSection from './ContactSection';
@@ -83,8 +83,8 @@ const CartPage = () => {
   };
 
   const handleCheckout = () => {
-    generatePDF(); // Generate the PDF
-    setIsModalOpen(false); // Close the modal
+    generatePDF(); 
+    setIsModalOpen(false);
   };
 
   return (
@@ -96,46 +96,53 @@ const CartPage = () => {
       </div>
 
       <div className='cart-page'>
-        <div className='productsadded'>
-          <div className='productsaddedheader'>
-            <p>Product</p>
-            <p>Selling Price</p>
-            <p>Quantity</p>
-            <p>Price</p>
+        {products.length === 0 ? (
+          <div className='empty-cart'>
+            <h2>Cart is empty</h2>
+            <p>Your cart is currently empty. Browse our products and add items to your cart.</p>
+            <button onClick={() => navigate('/products')} className="browse-button">
+              Browse Products
+            </button>
           </div>
-
-          {products.map((product, index) => (
-            <div className='individualproducts' key={index}>
-              <div className='productimagename'>
-                <img src={product.image} alt={product.name} />
-                <p>{product.name}</p>
-              </div>
-              <p>PHP {product.price}</p>
-              <div className='quantity-control'>
-                <button onClick={() => decreaseQuantity(index)} aria-label="Decrease quantity">
-                  <i className="fas fa-minus"></i>
-                </button>
-                <p>{quantities[index]}</p>
-                <button onClick={() => increaseQuantity(index)} aria-label="Increase quantity">
-                  <i className="fas fa-plus"></i>
-                </button>
-              </div>
-              <p>PHP {quantities[index] * product.price}</p>
-              <button
-                className="delete-button"
-                onClick={() => removeProduct(index)}
-              >
-                <i className="fas fa-trash"></i>
-              </button>
+        ) : (
+          <div className='productsadded'>
+            <div className='productsaddedheader'>
+              <p>Product</p>
+              <p>Selling Price</p>
+              <p>Quantity</p>
+              <p>Price</p>
             </div>
-          ))}
-        </div>
+
+            {products.map((product, index) => (
+              <div className='individualproducts' key={index}>
+                <div className='productimagename'>
+                  <img src={product.image} alt={product.name} />
+                  <p>{product.name}</p>
+                </div>
+                <p>PHP {product.price}</p>
+                <div className='quantity-control'>
+                  <button onClick={() => decreaseQuantity(index)} aria-label="Decrease quantity">
+                    <i className="fas fa-minus"></i>
+                  </button>
+                  <p>{quantities[index]}</p>
+                  <button onClick={() => increaseQuantity(index)} aria-label="Increase quantity">
+                    <i className="fas fa-plus"></i>
+                  </button>
+                </div>
+                <p>PHP {quantities[index] * product.price}</p>
+                <button className="delete-button" onClick={() => removeProduct(index)}>
+                  <i className="fas fa-trash"></i>
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
 
         <div className='ordersummary'>
           <h1>Order Summary</h1>
           <div className='summary-item'>
             <p>Name:</p>
-            <p>Maria Nadine Faye Rufo</p> {/* Full Name from DB */}
+            <p>Maria Nadine Faye Rufo</p> {/* full Name from DB */}
           </div>
           <div className='summary-item'>
             <p>Items:</p>
@@ -143,7 +150,7 @@ const CartPage = () => {
           </div>
           <div className='summary-item'>
             <p>Pickup Date:</p>
-            <p>September 12, 2025</p> {/* Date from DB */}
+            <p>September 12, 2025</p> {/* date from DB */}
           </div>
 
           <hr />
@@ -158,7 +165,9 @@ const CartPage = () => {
             <p>PHP {quantities.reduce((sum, quantity, index) => sum + (quantity * products[index].price), 0)}</p>
           </div>
 
-          <button onClick={() => setIsModalOpen(true)}>Checkout</button>
+          {products.length > 0 && (
+            <button onClick={() => setIsModalOpen(true)}>Checkout</button>
+          )}
         </div>
 
         <ConfirmationModal 
@@ -167,7 +176,6 @@ const CartPage = () => {
           onConfirm={handleCheckout} 
         />
       </div>
-
       <ScrollToTopButton />
       <FeedbackPage />
       <ContactSection setSelectedCategory={setSelectedCategory} />
