@@ -15,8 +15,8 @@ import product1 from "../imgs/college/college_femaleblouse.png"; // ex. product 
 const CartPage = () => {
   const [quantities, setQuantities] = useState([3, 1]);
   const [products, setProducts] = useState([
-    { name: 'Bulldogs Cap', price: 199, image: product },
-    { name: 'Female Traditional Blouse (M)', price: 560, image: product1 }, // ex. second product
+    { name: 'Bulldogs Cap', price: 199, image: product }, // No size
+    { name: 'Female Traditional Blouse (M)', price: 560, image: product1, size: 'M' }, // Has size
   ]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -26,10 +26,17 @@ const CartPage = () => {
   const increaseQuantity = (index) => {
     setQuantities(prevQuantities => {
       const newQuantities = [...prevQuantities];
-      // check if the total items in the cart is less than 5
-      if (totalItems() < 5) {
+      const product = products[index];
+
+      // Check if the product has a size and limit to 2, otherwise no limit
+      if (product.size) {
+        if (newQuantities[index] < 2) {
+          newQuantities[index] += 1;
+        }
+      } else {
         newQuantities[index] += 1;
       }
+
       return newQuantities;
     });
   };
@@ -57,22 +64,22 @@ const CartPage = () => {
   const generatePDF = (orderId) => {
     const doc = new jsPDF();
   
-    const margin = 25.4;
+    const margin = 25.4; // 1 inch margin
     const lineSpacing = 10 * 1.5; 
   
-    // header
+    // Header
     doc.setFont(undefined, 'bold');
     doc.setTextColor(61, 59, 146);
     doc.setFontSize(18);
     doc.text('NU MOA Bulldogs Exchange', margin, margin);
-
+  
     doc.setFont(undefined, 'normal');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
     doc.text('Order Summary', margin, margin + lineSpacing); 
     doc.line(margin, margin + lineSpacing + 2, 210 - margin, margin + lineSpacing + 2); 
   
-    // user info
+    // User Info
     let currentYPosition = margin + lineSpacing + 12;
     doc.setFontSize(12);
     doc.text(`Name: Maria Nadine Faye Rufo`, margin, currentYPosition);
@@ -89,8 +96,8 @@ const CartPage = () => {
     currentYPosition += lineSpacing;
   
     doc.line(margin, margin + lineSpacing + 2, 210 - margin, margin + lineSpacing + 2); 
-
-    // product list
+  
+    // Product List
     doc.setFontSize(10);
     products.forEach((product, index) => {
       const productYPosition = currentYPosition + index * lineSpacing;
@@ -100,7 +107,7 @@ const CartPage = () => {
       doc.text(`PHP ${product.price} x ${quantities[index]} = PHP ${quantities[index] * product.price}`, priceXPosition, productYPosition, { align: 'right' });
     });
   
-    // calculate total price
+    // Calculate Total Price
     const totalPrice = quantities.reduce((sum, quantity, index) => sum + (quantity * products[index].price), 0);
   
     const totalYPosition = currentYPosition + products.length * lineSpacing;
@@ -110,21 +117,20 @@ const CartPage = () => {
   
     doc.line(margin, margin + lineSpacing + 2, 210 - margin, margin + lineSpacing + 2); 
   
-    // tnx message
+    // Thank You Message
     const thankYouMessage = 'Thank you for your purchase! Please present this along with your school ID to the cashier when you come to pick up your order.';
     const messageXPosition = doc.internal.pageSize.getWidth() / 2;
     doc.setFontSize(8);
     doc.text(thankYouMessage, messageXPosition, totalYPosition + lineSpacing, { align: 'center', baseline: 'middle' });
   
-    // save pdf with unique name
-    const fileName = `Order_${orderId}_Maria_Nadine_Faye_Rufo.pdf`; // generate unique order ID
+    // Save the PDF with a unique name
+    const fileName = `Order_${orderId}_Maria_Nadine_Faye_Rufo.pdf`; 
     doc.save(fileName);
   
-    // clear the cart
+    // Clear the cart
     setQuantities([]);
     setProducts([]);
   };
-  
 
   const handleCheckout = () => {
     generatePDF(); 
@@ -186,7 +192,7 @@ const CartPage = () => {
           <h1>Order Summary</h1>
           <div className='summary-item'>
             <p>Name:</p>
-            <p>Maria Nadine Faye Rufo</p> {/* full Name from DB */}
+            <p>Maria Nadine Faye Rufo</p> {/* Full Name from DB */}
           </div>
           <div className='summary-item'>
             <p>Items:</p>
@@ -194,7 +200,7 @@ const CartPage = () => {
           </div>
           <div className='summary-item'>
             <p>Pickup Date:</p>
-            <p>September 12, 2025</p> {/* date from DB */}
+            <p>September 12, 2025</p> {/* Date from DB */}
           </div>
 
           <hr />
@@ -217,12 +223,14 @@ const CartPage = () => {
         <ConfirmationModal 
           isOpen={isModalOpen} 
           onClose={() => setIsModalOpen(false)} 
-          onConfirm={handleCheckout} 
+          onConfirm={handleCheckout}
         />
+
       </div>
-      <ScrollToTopButton />
+
       <FeedbackPage />
-      <ContactSection setSelectedCategory={setSelectedCategory} />
+      <ContactSection />
+      <ScrollToTopButton />
     </div>
   );
 };
