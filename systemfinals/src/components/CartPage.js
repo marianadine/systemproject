@@ -54,61 +54,77 @@ const CartPage = () => {
     navigate('/products', { state: { selectedCategory: category } });
   };
 
-  // function to generate PDF
   const generatePDF = (orderId) => {
     const doc = new jsPDF();
-
-    // Header
+  
+    const margin = 25.4;
+    const lineSpacing = 10 * 1.5; 
+  
+    // header
+    doc.setFont(undefined, 'bold');
+    doc.setTextColor(61, 59, 146);
     doc.setFontSize(18);
-    doc.text('NU MOA Bulldogs Exchange', 14, 10);
+    doc.text('NU MOA Bulldogs Exchange', margin, margin);
+
+    doc.setFont(undefined, 'normal');
+    doc.setTextColor(0, 0, 0);
     doc.setFontSize(10);
-    doc.text('Order Summary', 14, 18); 
-    doc.line(10, 20, 200, 20); 
-
-    // User Info
+    doc.text('Order Summary', margin, margin + lineSpacing); 
+    doc.line(margin, margin + lineSpacing + 2, 210 - margin, margin + lineSpacing + 2); 
+  
+    // user info
+    let currentYPosition = margin + lineSpacing + 12;
     doc.setFontSize(12);
-    doc.text(`Name: Maria Nadine Faye Rufo`, 14, 25);
-    doc.text(`Items: ${totalItems()}`, 14, 30);
-    doc.text(`Pickup Date: September 12, 2025`, 14, 35);
-
-    doc.text('', 14, 40); 
-
+    doc.text(`Name: Maria Nadine Faye Rufo`, margin, currentYPosition);
+    currentYPosition += lineSpacing;
+    doc.text(`Items: ${totalItems()}`, margin, currentYPosition);
+    currentYPosition += lineSpacing;
+    doc.text(`Pickup Date: September 12, 2025`, margin, currentYPosition);
+  
+    currentYPosition += lineSpacing; 
+  
     doc.setFontSize(12);
-    doc.text('Products:', 14, 45);
+    doc.text('Products:', margin, currentYPosition);
+  
+    currentYPosition += lineSpacing;
+  
+    doc.line(margin, margin + lineSpacing + 2, 210 - margin, margin + lineSpacing + 2); 
 
+    // product list
     doc.setFontSize(10);
     products.forEach((product, index) => {
-      const yPosition = 50 + index * 10; 
-      doc.text(`${index + 1}. ${product.name}`, 14, yPosition);
-
-      const priceXPosition = 170; 
-      doc.text(`PHP ${product.price} x ${quantities[index]} = PHP ${quantities[index] * product.price}`, priceXPosition, yPosition, { align: 'right' }); 
+      const productYPosition = currentYPosition + index * lineSpacing;
+      doc.text(`${index + 1}. ${product.name}`, margin, productYPosition);
+  
+      const priceXPosition = 210 - margin;
+      doc.text(`PHP ${product.price} x ${quantities[index]} = PHP ${quantities[index] * product.price}`, priceXPosition, productYPosition, { align: 'right' });
     });
-
-    // Calculate total price
+  
+    // calculate total price
     const totalPrice = quantities.reduce((sum, quantity, index) => sum + (quantity * products[index].price), 0);
-    
-    // Position and format total price
-    const totalYPosition = 50 + products.length * 10; 
-    doc.setFontSize(12); 
+  
+    const totalYPosition = currentYPosition + products.length * lineSpacing;
+    doc.setFontSize(12);
     doc.setFont(undefined, 'bold');
-    doc.text(`Total Price: PHP ${totalPrice}`, 170, totalYPosition, { align: 'right' });
-
-    doc.line(10, 20, 200, 20); 
-
+    doc.text(`Total Price: PHP ${totalPrice}`, 210 - margin, totalYPosition, { align: 'right' });
+  
+    doc.line(margin, margin + lineSpacing + 2, 210 - margin, margin + lineSpacing + 2); 
+  
+    // tnx message
     const thankYouMessage = 'Thank you for your purchase! Please present this along with your school ID to the cashier when you come to pick up your order.';
     const messageXPosition = doc.internal.pageSize.getWidth() / 2;
     doc.setFontSize(8);
-    doc.text(thankYouMessage, messageXPosition, totalYPosition + 10, { align: 'center', baseline: 'middle' }); 
-
-    // Save the PDF with a unique name
-    const fileName = `Order_${orderId}_Maria_Nadine_Faye_Rufo.pdf`; // Generate unique order ID
+    doc.text(thankYouMessage, messageXPosition, totalYPosition + lineSpacing, { align: 'center', baseline: 'middle' });
+  
+    // save pdf with unique name
+    const fileName = `Order_${orderId}_Maria_Nadine_Faye_Rufo.pdf`; // generate unique order ID
     doc.save(fileName);
-
-    // Clear the cart
+  
+    // clear the cart
     setQuantities([]);
     setProducts([]);
   };
+  
 
   const handleCheckout = () => {
     generatePDF(); 
