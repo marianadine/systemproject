@@ -11,12 +11,14 @@ import ConfirmationModal from './ConfirmationModal';
 
 import product from "../imgs/merch/merch_nucap.png"; // ex. product image
 import product1 from "../imgs/college/college_femaleblouse.png"; // ex. product image
+import barcodeImage from '../imgs/barcode.png';
+import ordersummlogo from '../imgs/websitelogo2.png';
 
 const CartPage = () => {
   const [quantities, setQuantities] = useState([3, 1]);
   const [products, setProducts] = useState([
-    { name: 'Bulldogs Cap', price: 199, image: product }, // No size
-    { name: 'Female Traditional Blouse (M)', price: 560, image: product1, size: 'M' }, // Has size
+    { name: 'Bulldogs Cap', price: 199, image: product }, // no size
+    { name: 'Female Traditional Blouse (M)', price: 560, image: product1, size: 'M' }, // has size
   ]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -28,7 +30,7 @@ const CartPage = () => {
       const newQuantities = [...prevQuantities];
       const product = products[index];
 
-      // Check if the product has a size and limit to 2, otherwise no limit
+      // check if the product has a size and limit to 2, otherwise no limit
       if (product.size) {
         if (newQuantities[index] < 2) {
           newQuantities[index] += 1;
@@ -61,76 +63,122 @@ const CartPage = () => {
     navigate('/products', { state: { selectedCategory: category } });
   };
 
+  // generate pdf function
   const generatePDF = (orderId) => {
     const doc = new jsPDF();
-  
-    const margin = 25.4; // 1 inch margin
-    const lineSpacing = 10 * 1.5; 
-  
-    // Header
-    doc.setFont(undefined, 'bold');
-    doc.setTextColor(61, 59, 146);
-    doc.setFontSize(18);
-    doc.text('NU MOA Bulldogs Exchange', margin, margin);
-  
-    doc.setFont(undefined, 'normal');
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
-    doc.text('Order Summary', margin, margin + lineSpacing); 
-    doc.line(margin, margin + lineSpacing + 2, 210 - margin, margin + lineSpacing + 2); 
-  
-    // User Info
-    let currentYPosition = margin + lineSpacing + 12;
-    doc.setFontSize(12);
-    doc.text(`Name: Maria Nadine Faye Rufo`, margin, currentYPosition);
-    currentYPosition += lineSpacing;
-    doc.text(`Items: ${totalItems()}`, margin, currentYPosition);
-    currentYPosition += lineSpacing;
-    doc.text(`Pickup Date: September 12, 2025`, margin, currentYPosition);
-  
-    currentYPosition += lineSpacing; 
-  
-    doc.setFontSize(12);
-    doc.text('Products:', margin, currentYPosition);
-  
-    currentYPosition += lineSpacing;
-  
-    doc.line(margin, margin + lineSpacing + 2, 210 - margin, margin + lineSpacing + 2); 
-  
-    // Product List
-    doc.setFontSize(10);
-    products.forEach((product, index) => {
-      const productYPosition = currentYPosition + index * lineSpacing;
-      doc.text(`${index + 1}. ${product.name}`, margin, productYPosition);
-  
-      const priceXPosition = 210 - margin;
-      doc.text(`PHP ${product.price} x ${quantities[index]} = PHP ${quantities[index] * product.price}`, priceXPosition, productYPosition, { align: 'right' });
-    });
-  
-    // Calculate Total Price
-    const totalPrice = quantities.reduce((sum, quantity, index) => sum + (quantity * products[index].price), 0);
-  
-    const totalYPosition = currentYPosition + products.length * lineSpacing;
-    doc.setFontSize(12);
-    doc.setFont(undefined, 'bold');
-    doc.text(`Total Price: PHP ${totalPrice}`, 210 - margin, totalYPosition, { align: 'right' });
-  
-    doc.line(margin, margin + lineSpacing + 2, 210 - margin, margin + lineSpacing + 2); 
-  
-    // Thank You Message
-    const thankYouMessage = 'Thank you for your purchase! Please present this along with your school ID to the cashier when you come to pick up your order.';
-    const messageXPosition = doc.internal.pageSize.getWidth() / 2;
-    doc.setFontSize(8);
-    doc.text(thankYouMessage, messageXPosition, totalYPosition + lineSpacing, { align: 'center', baseline: 'middle' });
-  
-    // Save the PDF with a unique name
-    const fileName = `Order_${orderId}_Maria_Nadine_Faye_Rufo.pdf`; 
-    doc.save(fileName);
-  
-    // Clear the cart
-    setQuantities([]);
-    setProducts([]);
-  };
+
+    const margin = 20.0;
+    const lineSpacing = 10;
+
+    const img = new Image();
+    img.src = ordersummlogo;
+
+    img.onload = function() {
+        const logoWidth = img.width / 4;
+        const logoHeight = img.height / 4;
+
+        const logoXPosition = margin;
+        doc.addImage(img, 'PNG', logoXPosition, margin, logoWidth, logoHeight);
+
+        const headerXPosition = doc.internal.pageSize.getWidth() - margin;
+
+        doc.setFont(undefined, 'bold');
+        doc.setTextColor(61, 59, 146);
+        doc.setFontSize(20);
+        const headerText = 'Bulldogs Exchange';
+        const headerTextWidth = doc.getTextWidth(headerText);
+        doc.text(headerText, headerXPosition - headerTextWidth, margin + (logoHeight / 2) + 5);
+
+        doc.setFont(undefined, 'bold');
+        doc.setTextColor(0, 0, 0);
+        doc.setFontSize(14);
+        const orderSummaryText = 'Order Summary';
+        const orderSummaryTextWidth = doc.getTextWidth(orderSummaryText);
+        doc.text(orderSummaryText, headerXPosition - orderSummaryTextWidth, margin + (logoHeight / 2) + 15);
+
+        const lineSpacingAfterTitle = 10;
+        doc.line(margin, margin + (logoHeight / 2) + 10 + lineSpacingAfterTitle, 210 - margin, margin + (logoHeight / 2) + 10 + lineSpacingAfterTitle);
+
+        let currentYPosition = margin + (logoHeight / 2) + 20 + lineSpacingAfterTitle;
+        doc.setFontSize(12);
+        doc.setFont(undefined, 'bold');
+        doc.text(`Name: Maria Nadine Faye Rufo`, margin, currentYPosition);
+        currentYPosition += lineSpacing;
+        doc.text(`Items: ${totalItems()}`, margin, currentYPosition);
+        currentYPosition += lineSpacing;
+        doc.text(`Pickup Date: September 12, 2025`, margin, currentYPosition);
+        
+        currentYPosition += lineSpacing;
+        doc.line(margin, currentYPosition, 210 - margin, currentYPosition);
+        currentYPosition += lineSpacing;
+
+        doc.setFontSize(12);
+        doc.setFont(undefined, 'bold');
+        doc.text('Products:', margin, currentYPosition);
+        
+        currentYPosition += lineSpacing;
+
+        doc.setFont(undefined, 'normal');
+        doc.setFontSize(10);
+        products.forEach((product, index) => {
+            const productYPosition = currentYPosition + index * (lineSpacing - 2);
+            doc.text(`${index + 1}. ${product.name}`, margin, productYPosition);
+
+            const priceXPosition = 210 - margin;
+            doc.text(
+                `PHP ${product.price} x ${quantities[index]} = PHP ${quantities[index] * product.price}`,
+                priceXPosition,
+                productYPosition,
+                { align: 'right' }
+            );
+        });
+
+        const totalYPosition = currentYPosition + products.length * (lineSpacing - 2);
+        doc.line(margin, totalYPosition + 5, 210 - margin, totalYPosition + 5);
+
+        const totalPrice = quantities.reduce(
+            (sum, quantity, index) => sum + quantity * products[index].price,
+            0
+        );
+
+        doc.setFontSize(12);
+        doc.setFont(undefined, 'bold');
+        doc.text(`Total Price: PHP ${totalPrice}`, 210 - margin, totalYPosition + 10, { align: 'right' });
+
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const barcodeWidth = pageWidth - 2 * margin;
+        const barcodeHeight = (10 / 50) * barcodeWidth;
+
+        currentYPosition = totalYPosition + 20;
+        doc.addImage(barcodeImage, 'PNG', margin, currentYPosition, barcodeWidth, barcodeHeight);
+
+        currentYPosition += barcodeHeight + 5;
+
+        const orderIdXPosition = doc.internal.pageSize.getWidth() / 2;
+        doc.setFontSize(10);
+        doc.text(`${orderId}`, orderIdXPosition, currentYPosition, { align: 'center' });
+
+        currentYPosition += lineSpacing - 5;
+
+        const thankYouMessage =
+            'Thank you for your purchase! Please present this along with your school ID to the cashier when you come to pick up your order.';
+        const messageXPosition = doc.internal.pageSize.getWidth() / 2;
+        const pageHeight = doc.internal.pageSize.getHeight();
+        const footerYPosition = pageHeight - 20;
+
+        doc.setFontSize(8);
+        doc.text(thankYouMessage, messageXPosition, footerYPosition, {
+            align: 'center',
+            baseline: 'middle',
+        });
+
+        const fileName = `Order_${orderId}_Maria_Nadine_Faye_Rufo.pdf`;
+        doc.save(fileName);
+
+        setQuantities([]);
+        setProducts([]);
+    };
+};
 
   const handleCheckout = () => {
     generatePDF(); 
