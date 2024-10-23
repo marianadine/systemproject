@@ -16,7 +16,7 @@ const CartPage = () => {
   const [quantities, setQuantities] = useState([3, 1]);
   const [products, setProducts] = useState([
     { name: 'Bulldogs Cap', price: 199, image: product },
-    { name: 'Female Traditional Blouse', price: 560, image: product1 }, // ex. second product
+    { name: 'Female Traditional Blouse (M)', price: 560, image: product1 }, // ex. second product
   ]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
