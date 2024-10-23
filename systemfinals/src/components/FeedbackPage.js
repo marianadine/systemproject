@@ -8,6 +8,7 @@ const FeedbackPage = () => {
   const [hoverRating, setHoverRating] = useState(0);
   const [thankYouMessageVisible, setThankYouMessageVisible] = useState(false);
   const [thankYouMessage, setThankYouMessage] = useState('');
+  const [timestamp, setTimestamp] = useState('');
   const feedbackRef = useRef(null);
 
   const minCharacterCount = 5;
@@ -17,7 +18,6 @@ const FeedbackPage = () => {
     setIsFeedbackVisible(!isFeedbackVisible);
   };
 
-  // Get custom thank you message based on the rating
   const getThankYouMessage = () => {
     switch (rating) {
       case 1:
@@ -47,13 +47,15 @@ const FeedbackPage = () => {
 
     console.log(`Feedback: ${feedback}, Rating: ${rating}`);
 
+    // Get the current date and time
+    const currentDateTime = new Date().toLocaleString();
+    setTimestamp(currentDateTime); // Store the timestamp
+
     setIsFeedbackVisible(false);
     setFeedback('');
     setRating(0);
-
-    // Set custom thank you message
+    
     setThankYouMessage(getThankYouMessage());
-
     setThankYouMessageVisible(true);
 
     setTimeout(() => {
@@ -141,7 +143,8 @@ const FeedbackPage = () => {
 
       {thankYouMessageVisible && (
         <div className="thank-you-message">
-          {thankYouMessage}
+          {thankYouMessage} <br /> {/* Display the thank you message */}
+          {timestamp && <span>Submitted on: {timestamp}</span>} {/* Display the timestamp */}
         </div>
       )}
     </div>
