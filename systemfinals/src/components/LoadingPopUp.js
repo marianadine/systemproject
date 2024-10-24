@@ -1,6 +1,5 @@
-// Loading.js
 import React, { useState, useEffect } from 'react';
-import './components_css/loadingstyle.css'; // Add your CSS for loading styling here
+import './components_css/loadingstyle.css'; 
 
 const LoadingPopUp = () => {
   const phrases = ["Please wait...", "Almost there..."];
@@ -10,12 +9,12 @@ const LoadingPopUp = () => {
     const interval = setInterval(() => {
       setCurrentPhrase(prevPhrase => {
         const currentIndex = phrases.indexOf(prevPhrase);
-        const nextIndex = (currentIndex + 1) % phrases.length; // Loop back to the start
+        const nextIndex = (currentIndex + 1) % phrases.length; 
         return phrases[nextIndex];
       });
-    }, 1000); // Change phrase every second
+    }, 1000);
 
-    return () => clearInterval(interval); // Cleanup on unmount
+    return () => clearInterval(interval);
   }, [phrases]);
 
   return (
