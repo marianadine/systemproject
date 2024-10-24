@@ -2,12 +2,16 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './components_css/loginpagestyle.css';
 
+import LoadingPopUp from './LoadingPopUp'; 
+
 import logo2 from '../imgs/websitelogo2.png';
 
 const LoginPage = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [email, setEmail] = useState(""); 
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -37,15 +41,20 @@ const LoginPage = () => {
       return;
     }
 
+    setLoading(true);
     completeLogin();
   };
 
   const completeLogin = () => {
-    navigate('/home'); 
+    setTimeout(() => {
+      setLoading(false);
+      navigate('/home'); 
+    }, 2000);
   };
 
   return (
     <section className='bgsec'>
+      {loading && <LoadingPopUp />} {/* show loading component when loading */}
       <div className="login-container">
         <img src={logo2} alt="NU MOA Logo" className="logo2" />
         <h2>Log In to continue</h2>

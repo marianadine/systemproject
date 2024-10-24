@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import './components_css/signuppagestyle.css';
+import LoadingPopUp from './LoadingPopUp'; 
 
 import logo3 from '../imgs/websitelogo2.png';
 
@@ -13,6 +14,7 @@ const SignUpPage = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [firstName, setFirstName] = useState(""); 
   const [lastName, setLastName] = useState(""); 
+  const [loading, setLoading] = useState(false);
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -53,6 +55,7 @@ const SignUpPage = () => {
     }
 
     if (selectedCourse) {
+      setLoading(true);
       completeSignup();
     } else {
       alert("Please fill out all fields.");
@@ -60,11 +63,15 @@ const SignUpPage = () => {
   };
 
   const completeSignup = () => {
-    navigate('/login'); 
+    setTimeout(() => {
+      setLoading(false);
+      navigate('/login');
+    }, 2000); 
   };
 
   return (
     <section className='bgsec'>
+      {loading && <LoadingPopUp />} {/* show loading component when loading */}
       <div className="signup-container">
         <img src={logo3} alt="NU MOA Logo" className="signup-logo" />
         <h2>Sign Up to continue</h2>
