@@ -18,6 +18,7 @@ const LoginPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault(); 
 
+    // email pattern and password validations -  @students.nu-moa.edu.ph
     const emailPattern = /^[a-zA-Z0-9._%+-]+@students\.nu-moa\.edu\.ph$/; 
     if (!emailPattern.test(email)) {
       alert("Please enter a valid email address ending with @students.nu-moa.edu.ph.");
@@ -28,7 +29,8 @@ const LoginPage = () => {
       alert("Password must be at least 8 characters long.");
       return;
     }
-
+    
+    // password pattern - 1 uppercase and 1 number
     const passwordUppercasePattern = /(?=.*[A-Z])(?=.*\d)/;
     if (!passwordUppercasePattern.test(password)) {
       alert("Password must contain at least one uppercase letter and one number.");

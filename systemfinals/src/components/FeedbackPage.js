@@ -18,6 +18,7 @@ const FeedbackPage = () => {
     setIsFeedbackVisible(!isFeedbackVisible);
   };
 
+  // feedback thank you msg, depending on the number of stars
   const getThankYouMessage = () => {
     switch (rating) {
       case 1:
@@ -38,6 +39,7 @@ const FeedbackPage = () => {
   const handleSubmitFeedback = (e) => {
     e.preventDefault();
 
+    // get the character length, excluding spaces
     const trimmedFeedbackLength = feedback.replace(/\s+/g, '').length;
 
     if (trimmedFeedbackLength < minCharacterCount || trimmedFeedbackLength > maxCharacterCount) {
@@ -47,9 +49,9 @@ const FeedbackPage = () => {
 
     console.log(`Feedback: ${feedback}, Rating: ${rating}`);
 
-    // Get the current date and time
+    // get the current date and time
     const currentDateTime = new Date().toLocaleString();
-    setTimestamp(currentDateTime); // Store the timestamp
+    setTimestamp(currentDateTime); // store the timestamp
 
     setIsFeedbackVisible(false);
     setFeedback('');
@@ -63,6 +65,7 @@ const FeedbackPage = () => {
     }, 3000);
   };
 
+  // for frontend, if sa labas pumindot si user auto close the pop up window
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (feedbackRef.current && !feedbackRef.current.contains(event.target)) {
@@ -77,6 +80,7 @@ const FeedbackPage = () => {
     };
   }, [feedbackRef]);
 
+  // star rating functions
   const handleStarClick = (ratingValue) => {
     setRating(ratingValue);
   };
@@ -143,8 +147,8 @@ const FeedbackPage = () => {
 
       {thankYouMessageVisible && (
         <div className="thank-you-message">
-          {thankYouMessage} <br /> {/* Display the thank you message */}
-          {timestamp && <span>Submitted on: {timestamp}</span>} {/* Display the timestamp */}
+          {thankYouMessage} <br /> {/* display the thank you message */}
+          {timestamp && <span>Submitted on: {timestamp}</span>} {/* display the timestamp */}
         </div>
       )}
     </div>

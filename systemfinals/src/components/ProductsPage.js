@@ -9,6 +9,8 @@ import FeedbackPage from './FeedbackPage';
 import SizePopUpChart from './SizePopUpChart';
 
 const ProductsPage = () => {
+
+  // default products
   const [products, setProducts] = useState([
     { 
       id: 1, 
@@ -126,12 +128,14 @@ const ProductsPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [cartMessage, setCartMessage] = useState('');
 
+  // search and button filter
   const filteredProducts = products.filter(product => {
     const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory;
     const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
+  // size function
   const handleSizeClick = (id, size) => {
     setProducts((prevProducts) =>
       prevProducts.map((product) =>
@@ -140,6 +144,7 @@ const ProductsPage = () => {
     );
   };
 
+  // size chart function
   const [isSizeChartOpen, setIsSizeChartOpen] = useState(false);
 
   const handleOpenSizeChart = () => {
@@ -150,7 +155,8 @@ const ProductsPage = () => {
     setIsSizeChartOpen(false);
   };
 
-  const handleAddToCart = () => {  // add to cart function
+  // add to cart function
+  const handleAddToCart = () => { 
     setCartMessage('Added to cart!');
     setTimeout(() => {
       setCartMessage('');
@@ -173,6 +179,7 @@ const ProductsPage = () => {
         <h1 className="product-header">Products</h1>
         
         <div className="category-filter">
+          {/* search bar filter */}
           <div className="search-bar-container">
               <input 
                   type="text" 
@@ -183,7 +190,8 @@ const ProductsPage = () => {
               />
               <i className="fas fa-search search-icon"></i>
           </div>
-          
+
+          {/* button filter */}
           <button 
             className={selectedCategory === 'all' ? 'selected' : ''} 
             onClick={() => setSelectedCategory('all')}
@@ -205,6 +213,7 @@ const ProductsPage = () => {
           >Merchandise</button>
         </div>
 
+        {/* display all products mapping */}
         <div className="product-grid">
           {filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
@@ -247,6 +256,7 @@ const ProductsPage = () => {
       </section>
 
       {cartMessage && <div className="overlay">{cartMessage}</div>}
+      
       <ScrollToTopButton />
       <FeedbackPage/>
       <ContactSection setSelectedCategory={setSelectedCategory} />

@@ -25,39 +25,47 @@ const CartPage = () => {
 
   const totalItems = () => quantities.reduce((sum, quantity) => sum + quantity, 0);
 
-  const increaseQuantity = (index) => {
-    setQuantities(prevQuantities => {
-      const newQuantities = [...prevQuantities];
-      const product = products[index];
+ // check if total quantity exceeds the limit
+ const isLimitReached = () => totalItems() >= 5;
 
-      // check if the product has a size and limit to 2, otherwise no limit
-      if (product.size) {
-        if (newQuantities[index] < 2) {
-          newQuantities[index] += 1;
-        }
-      } else {
-        newQuantities[index] += 1;
-      }
+ const increaseQuantity = (index) => {
+   setQuantities(prevQuantities => {
+     const newQuantities = [...prevQuantities];
+     const product = products[index];
 
-      return newQuantities;
-    });
-  };
+     // check if the total quantity is within the limit of 10
+     if (!isLimitReached()) {
+       // check if the product has a size and limit to 2, otherwise no limit
+       if (product.size) {
+         if (newQuantities[index] < 2) {
+           newQuantities[index] += 1;
+         }
+       } else {
+         newQuantities[index] += 1;
+       }
+     }
 
-  const decreaseQuantity = (index) => {
-    setQuantities(prevQuantities => {
-      const newQuantities = [...prevQuantities];
-      if (newQuantities[index] > 1) {
-        newQuantities[index] -= 1;
-      }
-      return newQuantities;
-    });
-  };
+     return newQuantities;
+   });
+ };
 
+ const decreaseQuantity = (index) => {
+   setQuantities(prevQuantities => {
+     const newQuantities = [...prevQuantities];
+     if (newQuantities[index] > 1) {
+       newQuantities[index] -= 1;
+     }
+     return newQuantities;
+   });
+ };
+
+ // delete button function
   const removeProduct = (index) => {
     setQuantities(prevQuantities => prevQuantities.filter((_, i) => i !== index));
     setProducts(prevProducts => prevProducts.filter((_, i) => i !== index));
   };
 
+  // for footer
   const navigate = useNavigate();
   const setSelectedCategory = (category) => {
     navigate('/products', { state: { selectedCategory: category } });
@@ -77,11 +85,13 @@ const CartPage = () => {
         const logoWidth = img.width / 4;
         const logoHeight = img.height / 4;
 
+        // logo
         const logoXPosition = margin;
         doc.addImage(img, 'PNG', logoXPosition, margin, logoWidth, logoHeight);
 
         const headerXPosition = doc.internal.pageSize.getWidth() - margin;
 
+        // header
         doc.setFont(undefined, 'bold');
         doc.setTextColor(61, 59, 146);
         doc.setFontSize(20);
@@ -99,6 +109,7 @@ const CartPage = () => {
         const lineSpacingAfterTitle = 10;
         doc.line(margin, margin + (logoHeight / 2) + 10 + lineSpacingAfterTitle, 210 - margin, margin + (logoHeight / 2) + 10 + lineSpacingAfterTitle);
 
+        // user info
         let currentYPosition = margin + (logoHeight / 2) + 20 + lineSpacingAfterTitle;
         doc.setFontSize(12);
         doc.setFont(undefined, 'bold');
@@ -112,6 +123,7 @@ const CartPage = () => {
         doc.line(margin, currentYPosition, 210 - margin, currentYPosition);
         currentYPosition += lineSpacing;
 
+        // products purchased
         doc.setFontSize(12);
         doc.setFont(undefined, 'bold');
         doc.text('Products:', margin, currentYPosition);
@@ -141,10 +153,12 @@ const CartPage = () => {
             0
         );
 
+        // total price
         doc.setFontSize(12);
         doc.setFont(undefined, 'bold');
         doc.text(`Total Price: PHP ${totalPrice}`, 210 - margin, totalYPosition + 10, { align: 'right' });
 
+        // barcode pic
         const pageWidth = doc.internal.pageSize.getWidth();
         const barcodeWidth = pageWidth - 2 * margin;
         const barcodeHeight = (10 / 50) * barcodeWidth;
@@ -156,10 +170,13 @@ const CartPage = () => {
 
         const orderIdXPosition = doc.internal.pageSize.getWidth() / 2;
         doc.setFontSize(10);
+
+        // get orderID
         doc.text(`${orderId}`, orderIdXPosition, currentYPosition, { align: 'center' });
 
         currentYPosition += lineSpacing - 5;
 
+        // footer
         const thankYouMessage =
             'Thank you for your purchase! Please present this along with your school ID to the cashier when you come to pick up your order.';
         const messageXPosition = doc.internal.pageSize.getWidth() / 2;
@@ -172,6 +189,7 @@ const CartPage = () => {
             baseline: 'middle',
         });
 
+        // show orderId sa file name
         const fileName = `Order_${orderId}_Maria_Nadine_Faye_Rufo.pdf`;
         doc.save(fileName);
 
@@ -195,6 +213,7 @@ const CartPage = () => {
 
       <div className='cart-page'>
         {products.length === 0 ? (
+          // if cart is empty
           <div className='empty-cart'>
             <h2>Cart is empty</h2>
             <p>Your cart is currently empty. Browse our products and add items to your cart.</p>
@@ -211,6 +230,7 @@ const CartPage = () => {
               <p>Price</p>
             </div>
 
+            {/* products list mapping */}
             {products.map((product, index) => (
               <div className='individualproducts' key={index}>
                 <div className='productimagename'>
@@ -268,6 +288,7 @@ const CartPage = () => {
           )}
         </div>
 
+        {/* for pop up window, checkout validation */}
         <ConfirmationModal 
           isOpen={isModalOpen} 
           onClose={() => setIsModalOpen(false)} 
@@ -277,7 +298,7 @@ const CartPage = () => {
       </div>
 
       <FeedbackPage />
-      <ContactSection />
+      <ContactSection setSelectedCategory={setSelectedCategory} />
       <ScrollToTopButton />
     </div>
   );

@@ -13,6 +13,7 @@ import ContactSection from './ContactSection';
 import Slideshow from './Slideshow';
 
 const HomePage = () => {
+  // default products
   const [products, setProducts] = useState([
     { 
       id: 7, 
@@ -86,6 +87,8 @@ const HomePage = () => {
   return (
     <div>
       <NavBar />
+      
+      {/* top section, welcome */}
       <section className="top-section">
         <div className="top-content">
           <h1>Wear your pride,</h1>
@@ -106,6 +109,7 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* website features section */}
       <section className='fullfeature'>
         <div className='features'>
           <div className="feature">
@@ -140,6 +144,7 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* what's new section */}
       <section className={`whatsnew ${isVisible ? 'visible' : ''}`} ref={whatsNewRef}>
         <div className='wntext'> 
           <h1>What's new?</h1>
@@ -172,8 +177,10 @@ const HomePage = () => {
         <button onClick={viewallproducts} className="viewall">View All</button>
       </section>
 
+      {/* slideshow component */}
       <Slideshow />
 
+      {/* nu moa yt video section */}
       <section className='videonumoa'>
         <div className="video-content-container">
           <iframe
@@ -195,7 +202,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Pass setSelectedCategory to ContactSection */}
+      {/* pass setSelectedCategory to ContactSection */}
       <ContactSection setSelectedCategory={setSelectedCategory} />
       <FeedbackPage />
       <ScrollToTopButton />

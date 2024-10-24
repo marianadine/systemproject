@@ -12,6 +12,7 @@ const ChangePasswordPopup = ({ onClose, onChangePassword }) => {
         return passwordRegex.test(password);
     };
 
+    // validations before submit
     const handleSubmit = () => {
         setPasswordError('');
         if (!currentPassword || !newPassword || !confirmPassword) {

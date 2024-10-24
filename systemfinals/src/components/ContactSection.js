@@ -5,12 +5,11 @@ import './components_css/contactsectionstyle.css';
 import logocontact from '../imgs/websitelogo.png';
 
 const ContactSection = ({ setSelectedCategory }) => {
-  const navigate = useNavigate(); // Initialize navigation
+  const navigate = useNavigate();
 
-  // Handle navigation and category selection
   const handleCategoryClick = (category) => {
-    setSelectedCategory(category); // Set the selected category
-    navigate('/products'); // Navigate to the products page
+    setSelectedCategory(category); // set the selected category
+    navigate('/products');
   };
 
   return (
