@@ -4,24 +4,35 @@ import { useNavigate } from 'react-router-dom';
 import './components_css/accountspagestyle.css';
 import ScrollToTopButton from './ScrollToTopButton';
 import FeedbackPage from './FeedbackPage';
-
 import NavBar from './NavBar';
 import defpfp from '../imgs/defaultpfp.jpg';
 import ContactSection from './ContactSection';
 import ChangePasswordPopup from './ChangePasswordPopup';
+import ConfirmationModal from './ConfirmationModal';
 
 const AccountPage = () => {
     const navigate = useNavigate();
     const [isEditing, setIsEditing] = useState(false);
     const [profilePic, setProfilePic] = useState(defpfp); 
     const [selectedFile, setSelectedFile] = useState(null);
-    const [currentPassword, setCurrentPassword] = useState('');
-    const [newPassword, setNewPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
     const [isChangingPassword, setIsChangingPassword] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false); 
 
     const toLogout = () => {
+        setIsModalOpen(false);
         navigate('/login'); 
+    };
+
+    const handleLogoutClick = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleConfirmLogout = () => {
+        toLogout(); 
+    };
+
+    const handleCancelLogout = () => {
+        setIsModalOpen(false);
     };
 
     const handleEditClick = () => {
@@ -41,7 +52,7 @@ const AccountPage = () => {
     };
 
     const handleSave = () => {
-        // DITO LALAGAY YUNG PAG ISSAVE NA SA DB YUNG SELECTED FILE
+        // Save the selected file to DB logic here
         handleEditClick();
         setSelectedFile(null);
     };
@@ -52,8 +63,7 @@ const AccountPage = () => {
 
     const setSelectedCategory = (category) => {
         navigate('/products', { state: { selectedCategory: category } });
-      };
-    
+    };
 
     return (
         <div>
@@ -120,7 +130,7 @@ const AccountPage = () => {
                         </div>
                     </div>
 
-                    <button className="logout" onClick={toLogout}>Logout</button>
+                    <button className="logout" onClick={handleLogoutClick}>Logout</button>
                 </div>
               </div>
             </section>
@@ -132,10 +142,16 @@ const AccountPage = () => {
                 />
             )}
 
+            {/* confirmation Modal for Logout */}
+            <ConfirmationModal 
+                isOpen={isModalOpen} 
+                onClose={handleCancelLogout} 
+                onConfirm={handleConfirmLogout} 
+            />
+
             <ContactSection setSelectedCategory={setSelectedCategory} />
             <FeedbackPage />
             <ScrollToTopButton />
-
         </div>
     );
 };
