@@ -5,9 +5,9 @@
   align-items: center;
   justify-content: center;
   background-size: cover;
-  background-position: top center;
+  background-position: center center;
   background-image: url('../../imgs/prodbg.png');
-  height: 35vh;
+  height: 30vh;
   padding-top: 20px;
   text-align: center;
   width: 100%;
@@ -15,14 +15,15 @@
 
 .carttop h1 {
   font-size: 50px;
-  font-weight: 500;
+  font-weight: 600;
   color: white;
   margin-bottom: 0px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .carttop p {
-  font-weight: 400;
+  width: 1000px;
+  font-weight: 500;
   font-size: 20px;
   color: white;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
@@ -50,8 +51,9 @@
 
 .ordersummary h1 {
   text-align: center;
-  font-size: 25px;
-  font-weight: 600;
+  font-size: 30px;
+  font-weight: 700;
+  color: #2e2b80;
   margin-bottom: 30px;
 }
 
@@ -80,6 +82,7 @@
   margin: 0;
   font-size: 24px;
   font-weight: bold;
+  color: #2e2b80;
 }
 
 .ordersummary button {
@@ -93,21 +96,39 @@
   font-size: 18px;
   font-weight: 600;
   margin: 30px 0px 0px 0px;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px #fed41e, 0 8px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
 }
 
 .ordersummary button:hover {
-  background-color: #d2b226;
+  box-shadow: 0 2px #fed41e, 0 6px 10px rgba(0, 0, 0, 0.2); 
+  transform: translateY(-2px); 
+}
+
+.ordersummary button:active {
+  box-shadow: 0 1px #fed41e; 
+  transform: translateY(1px);
+}
+
+.ordersummary button:hover {
+  background-color: #fed41e;
 }
 
 .summary-item {
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  margin-bottom: 15px;
+  margin-bottom: 15px
 }
 
 .summary-item p {
   margin: 0;
+}
+
+.userinfovalue {
+  font-weight: 600;
+  color: #696969;
 }
 
 /* -------------------- INDIVIDUAL PRODUCTS -------------------- */

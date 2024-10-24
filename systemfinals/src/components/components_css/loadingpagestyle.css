@@ -3,6 +3,7 @@
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  background-color: black;
 }
   
 .background-video {
@@ -69,7 +70,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 1500px;
+  width: 1700px;
   z-index: 10;
   animation: fadeInCenter 1s ease forwards; 
   animation-delay: 0.5s;

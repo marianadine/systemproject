@@ -260,22 +260,22 @@ const CartPage = () => {
           <h1>Order Summary</h1>
           <div className='summary-item'>
             <p>Name:</p>
-            <p>Maria Nadine Faye Rufo</p> {/* Full Name from DB */}
+            <p className='userinfovalue'>Maria Nadine Faye Rufo</p> {/* Full Name from DB */}
           </div>
           <div className='summary-item'>
             <p>Items:</p>
-            <p>{totalItems()}</p>
+            <p className='userinfovalue'>{totalItems()}</p>
           </div>
           <div className='summary-item'>
             <p>Pickup Date:</p>
-            <p>September 12, 2025</p> {/* Date from DB */}
+            <p className='userinfovalue'>September 12, 2025</p> {/* Date from DB */}
           </div>
 
           <hr />
 
           <div className='summary-item'>
             <p>Payment Method:</p>
-            <p>Over-the-Counter</p>
+            <p className='userinfovalue'>Over-the-Counter</p>
           </div>
 
           <div className='total-price'>

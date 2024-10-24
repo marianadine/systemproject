@@ -175,6 +175,13 @@ const ProductsPage = () => {
 
       {isSizeChartOpen && <SizePopUpChart onClose={handleCloseSizeChart} />}
 
+      <section>
+        <div className="notice-section">
+          <p>
+          Please note: Students can only avail up to 2 uniforms per student and a maximum of 5 items per transaction.          </p>
+        </div>
+      </section>
+
       <section className="product-container">
         <h1 className="product-header">Products</h1>
         

@@ -4,7 +4,7 @@ import './components_css/loadingpagestyle.css';
 
 // import videobg from '../imgs/videobg.mp4';
 import logo from '../imgs/websitelogo.png';
-import center from '../imgs/lpbanner.png';
+import center from '../imgs/lpbanner2.png';
 
 const LoadingPage = () => {
   const navigate = useNavigate();
