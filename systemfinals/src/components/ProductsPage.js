@@ -60,7 +60,6 @@ const ProductsPage = () => {
     }
   };
   
-
   const handleAddToCart = () => {
     if (selectedProduct) {
       // Check if the product is a uniform and enforce limit of 2 uniforms
@@ -81,6 +80,7 @@ const ProductsPage = () => {
 
       // Add the product to the cart
       setCartMessage('Added to cart!');
+      setSelectedProduct(null);
       setTotalItemsInCart(newTotalItems);
       setUniformCount(newUniformCount);
 

@@ -34,6 +34,27 @@
     animation: slideIn 0.5s forwards 0.7s;
 }
 
+.size-chart-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #f6d130;
+    color: white;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.3s ease !important;
+    transform: translateY(10px);
+    opacity: 0;
+    animation: fadeIn 0.5s forwards 0.9s;
+}
+
+.size-chart-button:hover {
+    background-color: #f2cc22;
+    transform: scale(1.05) !important;
+}
+
 .category-filter {
     display: flex;
     justify-content: center;
