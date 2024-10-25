@@ -186,9 +186,9 @@ const ProductsPage = () => {
                 </div>
               )}
               <div className="modal-price-section">
-                    <span style={{ fontSize: '18px', fontWeight: 'bold', color: '#34408e' }}>
-                        Price: PHP {selectedProduct.price.toFixed(2)}
-                    </span>
+                <span style={{ fontSize: '18px', fontWeight: 'bold', color: '#34408e' }}>
+                  Price: PHP {selectedProduct.price.toFixed(2)}
+                </span>
               </div>
               <div className="quantity-selection">
                 <label htmlFor="quantity">Quantity:</label>
@@ -207,14 +207,23 @@ const ProductsPage = () => {
                     id="quantity"
                     name="quantity"
                     min="1"
-                    max={selectedProduct.stock} // stock-based limit for non-sized products
+                    max={Math.min(selectedProduct.stock, 5)} // max at 5, but consider stock limit
                     defaultValue="1"
                   />
                 )}
               </div>
-              <p className='pnote'>Please note: Students can only avail up to 2 uniforms per student 
-                and a maximum of 5 items per transaction.</p>
-                <div className="button-container">
+              <p className='pnote'>
+                Please note: Students can only avail up to 2 uniforms per student 
+                and a maximum of 5 items per transaction.
+              </p>
+              
+              {selectedProduct.stock === 0 && (
+                <p style={{ color: 'red', fontWeight: 'bold', marginTop: '10px', fontSize: '18px', textAlign: 'right'}}>
+                  Out of Stock
+                </p>
+              )}
+
+              <div className="button-container">
                 <button
                   className="add-to-cart-button"
                   onClick={handleAddToCart}
@@ -228,6 +237,7 @@ const ProductsPage = () => {
           </div>
         </div>
       )}
+
       
       {cartMessage && <div className="overlay">{cartMessage}</div>}
 
