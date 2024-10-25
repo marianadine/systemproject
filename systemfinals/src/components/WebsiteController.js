@@ -14,7 +14,7 @@ const WebsiteController = () => {
     <Router>
       <ScrollToTop/>
       <Routes>
-        <Route path="/welcome" element={<LoadingPage />} /> 
+        <Route path="/" element={<LoadingPage />} /> 
         <Route path="/login" element={<LoginPage />} /> 
         <Route path="/signup" element={<SignUpPage />} /> 
         <Route path="/home" element={<HomePage />} /> 
