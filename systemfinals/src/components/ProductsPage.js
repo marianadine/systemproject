@@ -14,15 +14,15 @@ const ProductsPage = () => {
     { id: 2, name: 'Male Traditional Pants', price: 700, image: require('../imgs/college/college_malepants.png'), selectedSize: '', category: 'college', description: 'Classic pants for male college students.', hasSizes: true, stock: 5 },
     { id: 3, name: 'Female Traditional Blouse', price: 560, image: require('../imgs/college/college_femaleblouse.png'), selectedSize: '', category: 'college', description: 'A traditional female blouse for college students.', hasSizes: true, stock: 8 },
     { id: 4, name: 'Female Traditional Pants', price: 700, image: require('../imgs/college/college_femalepants.png'), selectedSize: '', category: 'college', description: 'Classic pants for female college students.', hasSizes: true, stock: 0 },
-    { id: 5, name: 'Female SHS Blouse', price: 580, image: require('../imgs/shs/shs_femaleblouse.png'), selectedSize: '', category: 'senior high school', description: 'A traditional female blouse for senior high school students.', hasSizes: true, stock: 12 },
-    { id: 6, name: 'Male SHS Polo', price: 580, image: require('../imgs/shs/shs_malepolo.png'), selectedSize: '', category: 'senior high school', description: 'A stylish blouse for male senior high school students.', hasSizes: true, stock: 3 },
-    { id: 7, name: 'Bulldogs Cap', price: 199, image: require('../imgs/merch/merch_nucap.png'), selectedSize: '', category: 'merchandise', description: 'A trendy cap for Bulldogs fans.', hasSizes: false, stock: 20 },
-    { id: 8, name: 'NU Drawstring Bag', price: 149, image: require('../imgs/merch/merch_drawstring.png'), selectedSize: '', category: 'merchandise', description: 'A convenient drawstring bag for daily use.', hasSizes: false, stock: 10 },
-    { id: 9, name: 'Bulldog Stuffed Toy', price: 299, image: require('../imgs/merch/merch_plushie.png'), selectedSize: '', category: 'merchandise', description: 'A cute Bulldog plush toy for school spirit.', hasSizes: false, stock: 0 },
-    { id: 10, name: 'NU Tumbler', price: 399, image: require('../imgs/merch/merch_tumbler.png'), selectedSize: '', category: 'merchandise', description: 'A durable tumbler for on-the-go drinks.', hasSizes: false, stock: 25 },
-    { id: 11, name: 'Male Psychology Traditional Polo', price: 600, image: require('../imgs/college/college_psychmalepolo.png'), selectedSize: '', category: 'college', description: 'A traditional male polo for psychology students.', hasSizes: true, stock: 10 },
-    { id: 12, name: 'Female Nursing Traditional Blouse', price: 600, image: require('../imgs/college/college_nursingfemalepolo.png'), selectedSize: '', category: 'college', description: 'A traditional female blouse for nursing students.', hasSizes: true, stock: 25 }
-  ]);
+    { id: 5, name: 'Male Psychology Traditional Polo', price: 600, image: require('../imgs/college/college_psychmalepolo.png'), selectedSize: '', category: 'college', description: 'A traditional male polo for psychology students.', hasSizes: true, stock: 10 },
+    { id: 6, name: 'Female Nursing Traditional Blouse', price: 600, image: require('../imgs/college/college_nursingfemalepolo.png'), selectedSize: '', category: 'college', description: 'A traditional female blouse for nursing students.', hasSizes: true, stock: 25 },
+    { id: 7, name: 'Female SHS Blouse', price: 580, image: require('../imgs/shs/shs_femaleblouse.png'), selectedSize: '', category: 'senior high school', description: 'A traditional female blouse for senior high school students.', hasSizes: true, stock: 12 },
+    { id: 8, name: 'Male SHS Polo', price: 580, image: require('../imgs/shs/shs_malepolo.png'), selectedSize: '', category: 'senior high school', description: 'A stylish blouse for male senior high school students.', hasSizes: true, stock: 3 },
+    { id: 9, name: 'Bulldogs Cap', price: 199, image: require('../imgs/merch/merch_nucap.png'), selectedSize: '', category: 'merchandise', description: 'A trendy cap for Bulldogs fans.', hasSizes: false, stock: 20 },
+    { id: 10, name: 'NU Drawstring Bag', price: 149, image: require('../imgs/merch/merch_drawstring.png'), selectedSize: '', category: 'merchandise', description: 'A convenient drawstring bag for daily use.', hasSizes: false, stock: 10 },
+    { id: 11, name: 'Bulldog Stuffed Toy', price: 299, image: require('../imgs/merch/merch_plushie.png'), selectedSize: '', category: 'merchandise', description: 'A cute Bulldog plush toy for school spirit.', hasSizes: false, stock: 0 },
+    { id: 12, name: 'NU Tumbler', price: 399, image: require('../imgs/merch/merch_tumbler.png'), selectedSize: '', category: 'merchandise', description: 'A durable tumbler for on-the-go drinks.', hasSizes: false, stock: 25 },
+]);
 
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
