@@ -7,7 +7,7 @@
   background-size: cover;
   background-position: center center;
   background-image: url('../../imgs/prodbg.png');
-  height: 30vh;
+  height: 25vh;
   padding-top: 20px;
   text-align: center;
   width: 100%;
@@ -17,6 +17,7 @@
   font-size: 50px;
   font-weight: 600;
   color: white;
+  margin-top: 50px;
   margin-bottom: 0px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
@@ -40,6 +41,7 @@
   border: 0.1px solid #e6e6e6;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   text-align: left;
+  animation: slideIn 0.5s ease-in;
 }
 
 .cart-page {
@@ -176,12 +178,18 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   margin-bottom: 50px; 
   width: 1070px;
+  animation: slideIn 0.5s ease-in;
 }
 
 .individualproducts img {
   width: 50px; 
   height: auto; 
   margin-right: 10px; 
+  transition: transform 0.3s ease;
+}
+
+.individualproducts:hover img {
+  transform: scale(1.1);
 }
 
 .individualproducts p {
@@ -273,6 +281,16 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  animation: pulse 1.5s 3;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
 }
 
 .empty-cart h2 {
