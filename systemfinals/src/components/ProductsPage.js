@@ -207,7 +207,7 @@ const ProductsPage = () => {
                     id="quantity"
                     name="quantity"
                     min="1"
-                    max={Math.min(selectedProduct.stock, 5)} // max at 5, but consider stock limit
+                    max={Math.min(selectedProduct.stock, 5)} // ITO BAGO TO max at 5, but consider stock limit
                     defaultValue="1"
                   />
                 )}
@@ -217,6 +217,7 @@ const ProductsPage = () => {
                 and a maximum of 5 items per transaction.
               </p>
               
+              {/* BAGO TO */}
               {selectedProduct.stock === 0 && (
                 <p style={{ color: 'red', fontWeight: 'bold', marginTop: '10px', fontSize: '18px', textAlign: 'right'}}>
                   Out of Stock
