@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import './components_css/cartpagestyle.css';
 import { useNavigate } from 'react-router-dom';
 import { jsPDF } from 'jspdf';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { addDays, isSunday, format } from 'date-fns';
 
 import NavBar from './NavBar';
 import ContactSection from './ContactSection';
@@ -16,6 +19,8 @@ import ordersummlogo from '../imgs/websitelogo2.png';
 
 const CartPage = () => {
   const [quantities, setQuantities] = useState([3, 1]);
+  const [selectedDate, setSelectedDate] = useState(null);
+
   const [products, setProducts] = useState([
     { name: 'Bulldogs Cap', price: 199, image: product }, // no size
     { name: 'Female Traditional Blouse (M)', price: 560, image: product1, size: 'M' }, // has size
@@ -109,6 +114,8 @@ const CartPage = () => {
         const lineSpacingAfterTitle = 10;
         doc.line(margin, margin + (logoHeight / 2) + 10 + lineSpacingAfterTitle, 210 - margin, margin + (logoHeight / 2) + 10 + lineSpacingAfterTitle);
 
+        const formattedDate = selectedDate ? format(selectedDate, 'MMMM d, yyyy') : 'Not selected'; // Format the date
+
         // user info
         let currentYPosition = margin + (logoHeight / 2) + 20 + lineSpacingAfterTitle;
         doc.setFontSize(12);
@@ -117,7 +124,7 @@ const CartPage = () => {
         currentYPosition += lineSpacing;
         doc.text(`Items: ${totalItems()}`, margin, currentYPosition);
         currentYPosition += lineSpacing;
-        doc.text(`Pickup Date: September 12, 2025`, margin, currentYPosition);
+        doc.text(`Pickup Date: ${formattedDate}`, margin, currentYPosition);
         
         currentYPosition += lineSpacing;
         doc.line(margin, currentYPosition, 210 - margin, currentYPosition);
@@ -190,7 +197,7 @@ const CartPage = () => {
         });
 
         // show orderId sa file name
-        const fileName = `Order_${orderId}_Maria_Nadine_Faye_Rufo.pdf`;
+        const fileName = `Order_${orderId}_Rufo.pdf`; // user last name
         doc.save(fileName);
 
         setQuantities([]);
@@ -201,6 +208,16 @@ const CartPage = () => {
   const handleCheckout = () => {
     generatePDF(); 
     setIsModalOpen(false);
+  };
+
+  // Function to check if the date is valid (not a Sunday and at least 10 days from today)
+  const isDateValid = (date) => {
+    const today = new Date();
+    const minDate = addDays(today, 0); // Day after today
+    const maxDate = addDays(today, 11); // 10 days from today
+  
+    // Check if date is within range and not a Sunday
+    return date >= minDate && date <= maxDate && !isSunday(date);
   };
 
   return (
@@ -268,9 +285,19 @@ const CartPage = () => {
           </div>
           <div className='summary-item'>
             <p>Pickup Date:</p>
-            <p className='userinfovalue'>September 12, 2025</p> {/* Date from DB */}
+            {products.length > 0 ? (
+                <DatePicker
+                    selected={selectedDate}
+                    onChange={(date) => setSelectedDate(date)}
+                    filterDate={isDateValid}
+                    placeholderText="Select a Pickup Date"
+                    dateFormat="MMMM d, yyyy"
+                    className="react-datepicker__input"
+                />
+            ) : (
+                <p></p>
+            )}
           </div>
-
           <hr />
 
           <div className='summary-item'>
@@ -284,8 +311,19 @@ const CartPage = () => {
           </div>
 
           {products.length > 0 && (
-            <button onClick={() => setIsModalOpen(true)}>Proceed To Checkout</button>
-          )}
+          <button 
+            onClick={() => {
+              if (!selectedDate) {
+                alert("Please select a pickup date before proceeding.");
+              } else {
+                setIsModalOpen(true);
+              }
+            }}
+            disabled={!selectedDate} // Disable the button if no date is selected
+          >
+            Proceed To Checkout
+          </button>
+        )}
         </div>
 
         {/* for pop up window, checkout validation */}
