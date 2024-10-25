@@ -342,3 +342,10 @@
   border: 1px solid #ccc;
   border-radius: 5px;
 }
+
+.cnote {
+  margin-top: 15px;
+  font-size: 12px;
+  font-style: italic;
+  text-align: left;
+}
