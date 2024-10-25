@@ -234,7 +234,7 @@ const ProductsPage = () => {
       {cartMessage && <div className="overlay">{cartMessage}</div>}
 
       <FeedbackPage />
-      <ContactSection />
+      <ContactSection setSelectedCategory={setSelectedCategory} />
       <ScrollToTopButton />
     </div>
   );
