@@ -284,7 +284,7 @@ const CartPage = () => {
           </div>
 
           {products.length > 0 && (
-            <button onClick={() => setIsModalOpen(true)}>Checkout</button>
+            <button onClick={() => setIsModalOpen(true)}>Proceed To Checkout</button>
           )}
         </div>
 

@@ -155,16 +155,16 @@ const SignUpPage = () => {
               onChange={(e) => setSelectedCourse(e.target.value)} 
             >
               <option value="" disabled>Select Your Course</option>
-              <option value="architecture">BS Architecture</option>
-              <option value="financial_management">BS Financial Management</option>
-              <option value="information_technology">BS Information Technology - MWA</option>
-              <option value="marketing_management">BS Marketing Management</option>
-              <option value="medical_technology">BS Medical Technology</option>
-              <option value="nursing">BS Nursing</option>
-              <option value="psychology">BS Psychology</option>
-              <option value="doctor_of_dental_medicine">Doctor of Dental Medicine</option>
-              <option value="doctor_of_optometry">Doctor of Optometry</option>
-              <option value="senior_high_school">Senior High School</option>
+              <option value="BS Architecture">BS Architecture</option>
+              <option value="BS Financial Management">BS Financial Management</option>
+              <option value="BS Information Technology - MWA">BS Information Technology - MWA</option>
+              <option value="BS Marketing Management">BS Marketing Management</option>
+              <option value="BS Medical Technology">BS Medical Technology</option>
+              <option value="BS Nursing">BS Nursing</option>
+              <option value="BS Psychology">BS Psychology</option>
+              <option value="Doctor of Dental Medicine">Doctor of Dental Medicine</option>
+              <option value="Doctor of Optometry">Doctor of Optometry</option>
+              <option value="Senior High School">Senior High School</option>
             </select>
           </div>
 
