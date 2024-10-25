@@ -11,7 +11,7 @@
     z-index: 1000;
 }
 
-.modal-content {
+.confmodal-content {
     background: #ffffff;
     flex-direction: column;
     padding: 20px;

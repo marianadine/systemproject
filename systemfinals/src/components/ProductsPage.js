@@ -228,9 +228,7 @@ const ProductsPage = () => {
           </div>
         </div>
       )}
-
-
-
+      
       {cartMessage && <div className="overlay">{cartMessage}</div>}
 
       <FeedbackPage />

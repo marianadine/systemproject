@@ -6,7 +6,7 @@ const ConfirmationModal = ({ isOpen, onClose, onConfirm }) => {
 
   return (
     <div className="modal-overlay">
-      <div className="modal-content">
+      <div className="confmodal-content">
         <h2>Confirmation</h2>
         <p>Are you sure you want to proceed?</p>
         <div className="modal-actions">
