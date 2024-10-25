@@ -13,12 +13,13 @@
 
 .modal-content {
     background: #ffffff;
+    flex-direction: column;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     text-align: center;
     max-width: 500px;
-    width: 90%;
+    width: 400px;
     animation: fadeIn 0.3s ease;
 }
 
@@ -33,8 +34,8 @@
     color: #555;
 }
 
-.modal-content .confirmbtn, 
-.modal-content .cancelbtn {
+.modal-actions .confirmbtn, 
+.modal-actions .cancelbtn {
     color: white;
     border: none;
     padding: 10px;
@@ -46,20 +47,20 @@
     font-size: 15px;
 }
 
-.modal-content .confirmbtn {
+.modal-actions .confirmbtn {
     background-color: #f6d130;
 }
 
-.modal-content .confirmbtn:hover {
+.modal-actions .confirmbtn:hover {
     background-color: #f2cc22;
     transform: scale(1.05);
 }
 
-.modal-content .cancelbtn {
+.modal-actions .cancelbtn {
     background-color: #3d3b92;
 }
 
-.modal-content .cancelbtn:hover {
+.modal-actions .cancelbtn:hover {
     background-color: #2e2b80;
     transform: scale(1.05); 
 }
