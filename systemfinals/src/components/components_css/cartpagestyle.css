@@ -192,9 +192,9 @@
 
 .productimagename p {
   max-width: 150px;
+  font-size: 15px !important;
   text-align: center;
 }
-
 
 .quantity-control {
   display: flex; 

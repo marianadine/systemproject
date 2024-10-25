@@ -235,7 +235,7 @@ const CartPage = () => {
               <div className='individualproducts' key={index}>
                 <div className='productimagename'>
                   <img src={product.image} alt={product.name} />
-                  <p>{product.name}</p>
+                  <p cal>{product.name}</p>
                 </div>
                 <p>PHP {product.price}</p>
                 <div className='quantity-control'>
