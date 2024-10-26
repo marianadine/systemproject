@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { jsPDF } from 'jspdf';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { addDays, isSunday, format } from 'date-fns';
+import { addDays, isSunday, format, min, max } from 'date-fns';
 
 import NavBar from './NavBar';
 import ContactSection from './ContactSection';
@@ -28,6 +28,11 @@ const CartPage = () => {
     { id: '4', date: 'October 31, 2024', slots: 25},
     { id: '5', date: 'November 1, 2024', slots: 25},
   ]);
+
+  // set kung anong month yung lalabas sa date picker
+  const availablePickupDates = availableDate.map(({ date }) => new Date(date));
+  const minDate = min(availablePickupDates); 
+  const maxDate = max(availablePickupDates);
 
   const [products, setProducts] = useState([
     { name: 'Bulldogs Cap', price: 199, image: product }, // no size
@@ -346,12 +351,15 @@ const CartPage = () => {
           <div className='summary-item'>
             <p>Pickup Date:</p>
             {products.length > 0 ? (
+              // MAY BINAGO DITO
               <DatePicker
                 selected={selectedDate}
                 onChange={(date) => setSelectedDate(date)}
                 filterDate={isDateValid}
                 placeholderText="Select a Pickup Date"
                 dateFormat="MMMM d, yyyy"
+                minDate={minDate}
+                maxDate={maxDate}
                 className="react-datepicker__input"
               />
             ) : (
