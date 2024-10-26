@@ -29,7 +29,7 @@ const CartPage = () => {
     { id: '5', date: 'November 1, 2024', slots: 25},
   ]);
 
-  // set kung anong month yung lalabas sa date picker
+  // BAGO TO set kung anong month yung lalabas sa date picker
   const availablePickupDates = availableDate.map(({ date }) => new Date(date));
   const minDate = min(availablePickupDates); 
   const maxDate = max(availablePickupDates);
