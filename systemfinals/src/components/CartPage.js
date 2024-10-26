@@ -371,7 +371,7 @@ const CartPage = () => {
           </div>
 
           {products.length > 0 && (
-            <button
+            <button className='checkoutbutton'
               onClick={() => {
                 if (!selectedDate) {
                   alert("Please select a pickup date before proceeding.");

@@ -87,7 +87,8 @@
   color: #2e2b80;
 }
 
-.ordersummary button {
+/* MAY BINAGO DITO */
+.ordersummary .checkoutbutton {
   width: 100%;
   padding: 10px;
   background-color: #f6d130;
@@ -103,19 +104,20 @@
   transition: all 0.2s ease-in-out;
 }
 
-.ordersummary button:hover {
+.ordersummary .checkoutbutton:hover {
   box-shadow: 0 2px #fed41e, 0 6px 10px rgba(0, 0, 0, 0.2); 
   transform: translateY(-2px); 
 }
 
-.ordersummary button:active {
+.ordersummary .checkoutbutton:active {
   box-shadow: 0 1px #fed41e; 
   transform: translateY(1px);
 }
 
-.ordersummary button:hover {
+.ordersummary .checkoutbutton:hover {
   background-color: #fed41e;
 }
+/* MAY BINAGO DITO */
 
 .summary-item {
   display: flex;
@@ -326,8 +328,7 @@
   }
 }
 
-
-/* -------------------- DATE PICKER -------------------- */
+/* -------------------- DATE PICKER -------------------- */ 
 .react-datepicker-wrapper {
   width: 300px;
   margin-right: 20px;
@@ -353,7 +354,7 @@
 }
 
 .react-datepicker__input:focus {
-  border-color: #61b59b;
+  border-color: #fed41e;
 }
 
 .react-datepicker {
@@ -361,6 +362,58 @@
   border-radius: 5px;
 }
 
+.react-datepicker__day {
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+  padding: 10px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.react-datepicker__day--disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+.react-datepicker__day:not(.react-datepicker__day--disabled):hover {
+  background-color: #f0f8f7;
+  color: #fed41e;
+}
+
+.react-datepicker__day--selected {
+  background-color: #fed41e;
+  color: white;
+}
+
+.date-slot-tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.date-slot-tooltip .tooltip-text {
+  visibility: hidden;
+  width: 120px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; 
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.date-slot-tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* -------------------- NOTE -------------------- */ 
 .cnote {
   margin-top: 15px;
   font-size: 12px;
