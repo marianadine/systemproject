@@ -21,6 +21,14 @@ const CartPage = () => {
   const [quantities, setQuantities] = useState([3, 1]);
   const [selectedDate, setSelectedDate] = useState(null);
 
+  const [availableDate, setAvailableDate] = useState([
+    { id: '1', date: 'October 28, 2024', slots: 25},
+    { id: '2', date: 'October 29, 2024', slots: 0},
+    { id: '3', date: 'October 30, 2024', slots: 25},
+    { id: '4', date: 'October 31, 2024', slots: 25},
+    { id: '5', date: 'November 1, 2024', slots: 25},
+  ]);
+
   const [products, setProducts] = useState([
     { name: 'Bulldogs Cap', price: 199, image: product }, // no size
     { name: 'Female Traditional Blouse (M)', price: 560, image: product1, size: 'M' }, // has size
@@ -74,6 +82,20 @@ const CartPage = () => {
   const navigate = useNavigate();
   const setSelectedCategory = (category) => {
     navigate('/products', { state: { selectedCategory: category } });
+  };
+
+  // BAGO TOOOOOOOOO function to adjust slot availability
+  const adjustSlotAvailability = () => {
+    if (!selectedDate) return;
+
+    setAvailableDate((prevAvailableDates) =>
+      prevAvailableDates.map((date) => {
+        if (date.date === format(selectedDate, 'MMMM d, yyyy') && date.slots > 0) {
+          return { ...date, slots: date.slots - 1 };
+        }
+        return date;
+      })
+    );
   };
 
   // generate pdf function
@@ -207,17 +229,25 @@ const CartPage = () => {
 
   const handleCheckout = () => {
     generatePDF();
+    adjustSlotAvailability();
     setIsModalOpen(false);
+    setQuantities([]);
+    setProducts([]);
   };
 
-  // Function to check if the date is valid (not a Sunday and at least 10 days from today)
+  // function to check if the date is valid (not a Sunday and at least 10 days from today)
+  // filters the dates to disable those with zero slots
   const isDateValid = (date) => {
     const today = new Date();
-    const minDate = addDays(today, 0); // Day after today
-    const maxDate = addDays(today, 11); // 10 days from today
+    const maxDate = addDays(today, 6);
+    const formattedDate = format(date, 'MMMM d, yyyy');
 
-    // Check if date is within range and not a Sunday
-    return date >= minDate && date <= maxDate && !isSunday(date);
+    return (
+      date >= today &&
+      date <= maxDate &&
+      !isSunday(date) &&
+      availableDate.some((d) => d.date === formattedDate && d.slots > 0)
+    );
   };
 
   return (
@@ -235,6 +265,28 @@ const CartPage = () => {
           </p>
         </div>
       </section>
+
+      {/* BAGO TO Date slot availability table FOR TESTING ONLY*/}
+      <div className="available-slots">
+        <h2>Pickup Date Slots</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Available Slots</th>
+            </tr>
+          </thead>
+          <tbody>
+            {availableDate.map(({ id, date, slots }) => (
+              <tr key={id} className={slots === 0 ? 'disabled-date' : ''}>
+                <td>{date}</td>
+                <td>{slots > 0 ? slots : 'Fully Booked'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {/* Date slot availability table FOR TESTING ONLY*/}
 
       <div className='cart-page'>
         {products.length === 0 ? (
@@ -327,7 +379,7 @@ const CartPage = () => {
                   setIsModalOpen(true);
                 }
               }}
-              disabled={!selectedDate} // Disable the button if no date is selected
+              disabled={!selectedDate} // disable the button if no date is selected
             >
               Proceed To Checkout
             </button>
