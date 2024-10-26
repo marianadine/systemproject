@@ -200,6 +200,7 @@ const ProductsPage = () => {
                     min="1"
                     max="2" // limit to 2 if the product has sizes
                     defaultValue="1"
+                    onKeyDown={(e) => e.preventDefault()} // disables typing
                   />
                 ) : (
                   <input
@@ -209,6 +210,7 @@ const ProductsPage = () => {
                     min="1"
                     max={Math.min(selectedProduct.stock, 5)} // ITO BAGO TO max at 5, but consider stock limit
                     defaultValue="1"
+                    onKeyDown={(e) => e.preventDefault()} // disables typing
                   />
                 )}
               </div>
